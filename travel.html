@@ -5,17 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Emma Watson</title>
+    <title>Travel | Emma Watson</title>
 
+    <!-- Bootstrap -->
     <link rel="stylesheet"
           href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
 
+    <!-- Our CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+    <!-- ================= NAVBAR ================= -->
+
     <nav class="main-nav">
 
         <div class="logo">
@@ -23,10 +26,10 @@
         </div>
 
         <ul>
-            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="aboutme.html">About</a></li>
             <li><a href="tech.html">Tech</a></li>
-            <li><a href="travel.html">Travel</a></li>
+            <li><a href="travel.html" class="active">Travel</a></li>
             <li><a href="lifestyle.html">Lifestyle</a></li>
             <li><a href="food.html">Food</a></li>
         </ul>
@@ -34,63 +37,33 @@
     </nav>
 
 
-    <!-- HERO -->
-    <header class="home-hero">
+    <!-- ================= HERO ================= -->
 
-        <div class="container">
+    <header class="page-hero">
 
-            <div class="row align-items-center g-5">
+        <p class="hero-small">
+            PLACES • MOVIES • EXPERIENCES
+        </p>
 
-                <!-- LEFT TEXT -->
-                <div class="col-12 col-lg-6">
+        <h1>
+            Emma Watson's Journey
+        </h1>
 
-                    <p class="hero-small">
-                        ACTRESS • ACTIVIST • INSPIRATION
-                    </p>
-
-                    <h1>
-                        Emma Watson
-                    </h1>
-
-                    <p class="home-description">
-                        Exploring a more sustainable, equal and kinder world
-                        through film, education, travel and everyday choices.
-                    </p>
-
-                    <a href="#latest" class="hero-button">
-                        Explore the Blog →
-                    </a>
-
-                </div>
-
-
-                <!-- RIGHT IMAGE -->
-                <div class="col-12 col-lg-6">
-
-                    <div class="hero-photo">
-
-                        <img
-                            src="pictures.jpg/emma1_.jpg"
-                            alt="Emma Watson"
-                        >
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+        <p class="hero-description">
+            Explore the places, movies and experiences that shaped
+            Emma Watson's life and career.
+        </p>
 
     </header>
 
 
-    <!-- LATEST POSTS -->
-    <main id="latest" class="container content-section">
+    <!-- ================= CONTENT ================= -->
+
+    <main class="container content-section">
 
         <div class="section-heading">
 
-            <h2>Latest Posts</h2>
+            <h2>Her Journey</h2>
 
             <div class="heading-line"></div>
 
@@ -100,46 +73,8 @@
         <div class="row g-4">
 
 
-            <!-- TECH -->
-            <div class="col-12 col-md-6 col-lg-4">
+            <!-- CARD 1 -->
 
-                <article class="emma-card">
-
-                    <div class="emma-image">
-
-                        <img
-                            src="pictures.jpg/digital-voice.jpg"
-                            alt="Emma Watson digital voice"
-                            loading="lazy"
-                        >
-
-                    </div>
-
-                    <div class="emma-card-content">
-
-                        <span class="emma-tag">
-                            Tech
-                        </span>
-
-                        <h3>Digital Voice</h3>
-
-                        <p>
-                            Discover Emma Watson's connection with
-                            education, technology and digital activism.
-                        </p>
-
-                        <a href="tech.html" class="read-more">
-                            Read More →
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <!-- TRAVEL -->
             <div class="col-12 col-md-6 col-lg-4">
 
                 <article class="emma-card">
@@ -148,7 +83,7 @@
 
                         <img
                             src="pictures.jpg/oxford.jpg"
-                            alt="Emma Watson journey"
+                            alt="Emma Watson early life"
                             loading="lazy"
                         >
 
@@ -157,17 +92,21 @@
                     <div class="emma-card-content">
 
                         <span class="emma-tag">
-                            Travel
+                            Early Life
                         </span>
 
-                        <h3>Emma's Journey</h3>
+                        <h3>
+                            Oxford: Early Life
+                        </h3>
 
                         <p>
-                            Explore the places and experiences that
-                            shaped Emma Watson's life and career.
+                            Emma Watson grew up in Oxfordshire, England.
+                            She studied acting, singing and dancing at
+                            Stagecoach Theatre Arts before beginning
+                            her professional acting career.
                         </p>
 
-                        <a href="travel.html" class="read-more">
+                        <a href="#" class="read-more">
                             Read More →
                         </a>
 
@@ -178,7 +117,52 @@
             </div>
 
 
-            <!-- MOVIES -->
+            <!-- CARD 2 -->
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="emma-card">
+
+                    <div class="emma-image">
+
+                        <img
+                            src="pictures.jpg/harry-potter.jpg"
+                            alt="Emma Watson as Hermione Granger"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Harry Potter
+                        </span>
+
+                        <h3>
+                            Harry Potter Journey
+                        </h3>
+
+                        <p>
+                            Emma became internationally known for playing
+                            Hermione Granger in the Harry Potter film series.
+                            She appeared as Hermione throughout all eight
+                            films of the series.
+                        </p>
+
+                        <a href="#" class="read-more">
+                            Read More →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
             <div class="col-12 col-md-6 col-lg-4">
 
                 <article class="emma-card">
@@ -199,14 +183,18 @@
                             Movies
                         </span>
 
-                        <h3>Film & Career</h3>
+                        <h3>
+                            Beyond Hogwarts
+                        </h3>
 
                         <p>
-                            From Hermione Granger to Beauty and the Beast
-                            and Little Women.
+                            After Harry Potter, Emma continued her acting
+                            career with films including The Perks of Being
+                            a Wallflower, Beauty and the Beast and
+                            Little Women.
                         </p>
 
-                        <a href="travel.html" class="read-more">
+                        <a href="#" class="read-more">
                             Read More →
                         </a>
 
@@ -221,10 +209,13 @@
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- ================= FOOTER ================= -->
+
     <footer class="site-footer">
 
-        <p>© 2026 Emma Watson Blog</p>
+        <p>
+            © 2026 Emma Watson Blog
+        </p>
 
         <p class="footer-small">
             Actress • Activist • Inspiration ♡
