@@ -12,143 +12,77 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-   
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header class="header">
-        <div class="logo">
-            Emma Watson's <em>website</em>
-        </div>
-        <nav class="nav-links">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-        
-                <li><a href="aboutme.html" class="active">About</a></li>
-                <li><a href="tech.html">Tech</a></li>
-                <li><a href="travel.html">Travel</a></li>
-                <li><a href="lifestyle.html">Lifestyle</a></li>
-                <li><a href="food.html">Food</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main class="about-container">
-        <h1 class="page-title">About Emma Watson</h1>
+    <nav class="navbar">
 
-        <div class="about-grid">
+        <div class="logo">♡ EMMA WATSON</div>
 
-            <section class="card bio-card">
+        <!-- Your Menu Links -->
+        <ul class="nav-links">
+
+            <li><a href="index.html">Home</a></li>
+
+            <li><a href="aboutme.html" class="active">About</a></li>
+            <li><a href="tech.html">Tech</a></li>
+            <li><a href="travel.html">Travel</a></li>
+            <li><a href="lifestyle.html">Lifestyle</a></li>
+            <li><a href="food.html">Food</a></li>
+
+
+        </ul>
+    </nav>
+
+    <div class="main-container">
+        <h1>About Emma Watson</h1>
+
+        <div class="info-grid">
+            <!-- Biography Card -->
+            <div class="card">
                 <h2>Biography</h2>
                 <p>
-                    Emma Charlotte Duerden Watson is an English actress, model, and activist. She is known for her role
-                    as Hermione Granger in the Harry Potter film series and for her work as a UN Women Goodwill
-                    Ambassador.
+                    Emma Charlotte Duerden Watson is an English actress, model, and activist.
+                    She is known for her role as Hermione Granger in the Harry Potter film series
+                    and for her work as a UN Women Goodwill Ambassador.
                 </p>
-            </section>
+            </div>
 
-            <section class="card facts-card">
+            <!-- Quick Facts Card -->
+            <div class="card">
                 <h2>Quick Facts</h2>
                 <ul>
                     <li><strong>Born:</strong> April 15, 1990 (Paris, France)</li>
                     <li><strong>Genres:</strong> Actress, Model, Activist</li>
                     <li><strong>Breakthrough Role:</strong> Hermione Granger (2001-2011)</li>
-                    <li><strong>Debut Acting Role:</strong> Harry Potter and the Philosopher's Stone (2001)</li>
+                    <li><strong>Debut Role:</strong> Harry Potter and the Philosopher's Stone (2001)</li>
                 </ul>
-            </section>
+            </div>
 
-        
-            <section class="card awards-card">
+            <!-- Awards Card -->
+            <div class="card">
                 <h2>Awards & Nominations</h2>
-                <table class="awards-table">
-                    <thead>
-                        <tr>
-                            <th>Year</th>
-                            <th>Award</th>
-                            <th>Category</th>
-                            <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>2017</td>
-                            <td>MTV Movie & TV Awards</td>
-                            <td>Best Actor in a Movie</td>
-                            <td>Won</td>
-                        </tr>
-                        <tr>
-                            <td>2014</td>
-                            <td>British Academy Film Awards</td>
-                            <td>British Artist of the Year</td>
-                            <td>Won</td>
-                        </tr>
-                        <tr>
-                            <td>2013</td>
-                            <td>People's Choice Awards</td>
-                            <td>Favorite Dramatic Movie Actress</td>
-                            <td>Won</td>
-                        </tr>
-                        <tr>
-                            <td>2012</td>
-                            <td>Teen Choice Awards</td>
-                            <td>Choice Movie Actress: Drama</td>
-                            <td>Won</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+                <ul>
+                    <li><strong>2017:</strong> MTV Movie & TV Awards (Best Actor in a Movie) - Won</li>
+                    <li><strong>2014:</strong> British Academy Film Awards (British Artist of the Year) - Won</li>
+                </ul>
+            </div>
 
-            <section class="card style-card">
-                <h2>Style & Aesthetic</h2>
-                <p>
-                    Emma Watson's style is characterized by her elegant, classic look and her commitment to sustainable
-                    fashion. She often incorporates vintage elements into her outfits and is known for her advocacy for
-                    environmental causes.
-                </p>
-            </section>
-
-            <section class="card quote-card">
+            <!-- Quote Card -->
+            <div class="card">
                 <h2>Iconic Quote</h2>
-                <blockquote>
-                    “Feminism is not here to dictate to you. It's not prescriptive, it's not dogmatic. All we are here
-                    to do is give you a choice.”
+                <blockquote class="quote">
+                    "It is not the ability to do great things that makes a difference, it is the choice to do them."
                 </blockquote>
-            </section>
-
+            </div>
         </div>
-    </main>
-    <section class="contact-form">
-    <h2>Contact Me</h2>
-
-    <form>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5"></textarea>
-
-        <button type="submit">Send</button>
-    </form>
-</section>
-
-    <footer class="site-footer">
-        <p>&copy; 2026 Emma Watson Fan Blog. All rights reserved.</p>
-        <p>Contact: <a href="mailto:info@emmawatsonblog.com">info@emmawatsonblog.com</a></p>
-        <div class="social-links">
-            <a href="#">Instagram</a> |
-            <a href="#">Twitter</a> |
-            <a href="#">Facebook</a>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
 
 </body>
 

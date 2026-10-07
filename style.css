@@ -121,16 +121,12 @@ body {
     padding: 85px 20px 75px;
 
     background:
-        radial-gradient(
-            circle at 15% 20%,
+        radial-gradient(circle at 15% 20%,
             #ffffff 0%,
-            transparent 25%
-        ),
-        linear-gradient(
-            120deg,
+            transparent 25%),
+        linear-gradient(120deg,
             #fff8fa 0%,
-            #ffe3e9 100%
-        );
+            #ffe3e9 100%);
 
     border-bottom: 1px solid #f4d6dd;
 }
@@ -484,16 +480,12 @@ body {
     padding: 70px 0;
 
     background:
-        radial-gradient(
-            circle at 12% 25%,
+        radial-gradient(circle at 12% 25%,
             #ffffff 0%,
-            transparent 24%
-        ),
-        linear-gradient(
-            120deg,
+            transparent 24%),
+        linear-gradient(120deg,
             #fff7f9 0%,
-            #ffdce4 100%
-        );
+            #ffdce4 100%);
 
     border-bottom: 1px solid #f3cdd6;
 }
@@ -655,4 +647,144 @@ body {
         display: none;
     }
 
+}
+
+/* =========================================
+   ABOUT PAGE NAVIGATION (Matches Home Page)
+   ========================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #fff;
+    border-bottom: 1px solid #fce4ec;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #38282d;
+    /* Added color to ensure it matches */
+}
+
+/* This removes the bullet points and makes the list horizontal */
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+
+/* Styles the individual links */
+.nav-links li a {
+    text-decoration: none;
+    color: #755f65;
+    font-family: Georgia, "Times New Roman", serif;
+    /* Added font to match home */
+    font-size: 16px;
+    padding: 10px 24px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+/* The ACTIVE page (About) gets the pink background */
+.nav-links li a.active {
+    background-color: #fce4ec;
+    color: #8c5a5a;
+}
+
+/* Hover effect */
+.nav-links li a:hover:not(.active) {
+    background-color: #fff7f9;
+    color: #38282d;
+}
+
+/* =========================================
+   ABOUT PAGE CONTENT (Grid Cards)
+   ========================================= */
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.main-container h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 50px;
+    margin-bottom: 30px;
+    color: #38282d;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.card {
+    background-color: #fce4ec;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+    margin-top: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+    color: #38282d;
+    margin-bottom: 15px;
+}
+
+.card p,
+.card ul {
+    line-height: 1.6;
+    font-size: 16px;
+    color: #755f65;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.card ul li {
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(117, 95, 101, 0.2);
+    padding-bottom: 8px;
+}
+
+.card ul li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.card strong {
+    color: #38282d;
+}
+
+.quote {
+    border-left: 4px solid #d96f87;
+    padding-left: 15px;
+    font-style: italic;
+    color: #755f65;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
 }
