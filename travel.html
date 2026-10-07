@@ -7,7 +7,7 @@
 
     <title>Travel | Emma Watson</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap -->
     <link rel="stylesheet"
           href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
 
@@ -17,162 +17,213 @@
 
 <body>
 
-    <!-- NAVIGATION -->
-    <header>
-        <nav class="nav-links">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="aboutme.html">About</a></li>
-                <li><a href="tech.html">Tech</a></li>
-                <li><a href="travel.html" class="active">Travel</a></li>
-                <li><a href="lifestyle.html">Lifestyle</a></li>
-                <li><a href="food.html">Food</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="main-nav">
+
+        <div class="logo">
+            ♡ EMMA WATSON
+        </div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutme.html">About</a></li>
+            <li><a href="tech.html">Tech</a></li>
+            <li><a href="travel.html" class="active">Travel</a></li>
+            <li><a href="lifestyle.html">Lifestyle</a></li>
+            <li><a href="food.html">Food</a></li>
+        </ul>
+
+    </nav>
 
 
-    <!-- MAIN CONTENT -->
-<main class="container py-5">
+    <!-- ================= HERO ================= -->
 
-    <!-- PAGE TITLE -->
-    <section class="text-center mb-5">
+    <header class="page-hero">
 
-        <h1 class="display-5 fw-bold">
+        <p class="hero-small">
+            PLACES • MOVIES • EXPERIENCES
+        </p>
+
+        <h1>
             Emma Watson's Journey
         </h1>
 
-        <p class="text-muted fs-5">
-            Explore the places, movies and experiences
-            that shaped Emma Watson's life and career.
+        <p class="hero-description">
+            Explore the places, movies and experiences that shaped
+            Emma Watson's life and career.
         </p>
 
-    </section>
+    </header>
 
 
-    <!-- BOOTSTRAP GRID -->
-    <section class="row g-4">
+    <!-- ================= CONTENT ================= -->
 
+    <main class="container content-section">
 
-        <!-- CARD 1 -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="section-heading">
 
-            <article class="card h-100 shadow border-0">
+            <h2>Her Journey</h2>
 
-                <img src="pictures.jpg/oxford.jpg"
-                     class="card-img-top"
-                     alt="Emma Watson in Oxford">
-
-                <div class="card-body d-flex flex-column p-4">
-
-                    <h2 class="card-title h4 fw-bold">
-                        Oxford: Early Life
-                    </h2>
-
-                    <p class="card-text text-muted">
-                        Emma Watson grew up in Oxfordshire, England.
-                        She studied acting, singing and dancing at
-                        Stagecoach Theatre Arts in Oxford before
-                        beginning her professional acting career.
-                    </p>
-
-                    <a href="#"
-                       class="btn btn-dark mt-auto">
-                        Read More
-                    </a>
-
-                </div>
-
-            </article>
+            <div class="heading-line"></div>
 
         </div>
 
 
-        <!-- CARD 2 -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="row g-4">
 
-            <article class="card h-100 shadow border-0">
 
-                <img src="pictures.jpg/harry-potter.jpg"
-                     class="card-img-top"
-                     alt="Emma Watson as Hermione Granger"
-                     loading="lazy">
+            <!-- CARD 1 -->
 
-                <div class="card-body d-flex flex-column p-4">
+            <div class="col-12 col-md-6 col-lg-4">
 
-                    <h2 class="card-title h4 fw-bold">
-                        Harry Potter Journey
-                    </h2>
+                <article class="emma-card">
 
-                    <p class="card-text text-muted">
-                        Emma became internationally known for playing
-                        Hermione Granger in the Harry Potter film series.
-                        She appeared as Hermione throughout all eight
-                        films of the series.
-                    </p>
+                    <div class="emma-image">
 
-                    <a href="#"
-                       class="btn btn-dark mt-auto">
-                        Read More
-                    </a>
+                        <img
+                            src="pictures.jpg/oxford.jpg"
+                            alt="Emma Watson early life"
+                            loading="lazy"
+                        >
 
-                </div>
+                    </div>
 
-            </article>
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Early Life
+                        </span>
+
+                        <h3>
+                            Oxford: Early Life
+                        </h3>
+
+                        <p>
+                            Emma Watson grew up in Oxfordshire, England.
+                            She studied acting, singing and dancing at
+                            Stagecoach Theatre Arts before beginning
+                            her professional acting career.
+                        </p>
+
+                        <a href="#" class="read-more">
+                            Read More →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="emma-card">
+
+                    <div class="emma-image">
+
+                        <img
+                            src="pictures.jpg/harry-potter.jpg"
+                            alt="Emma Watson as Hermione Granger"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Harry Potter
+                        </span>
+
+                        <h3>
+                            Harry Potter Journey
+                        </h3>
+
+                        <p>
+                            Emma became internationally known for playing
+                            Hermione Granger in the Harry Potter film series.
+                            She appeared as Hermione throughout all eight
+                            films of the series.
+                        </p>
+
+                        <a href="#" class="read-more">
+                            Read More →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="emma-card">
+
+                    <div class="emma-image">
+
+                        <img
+                            src="pictures.jpg/movies.jpg"
+                            alt="Emma Watson film career"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Movies
+                        </span>
+
+                        <h3>
+                            Beyond Hogwarts
+                        </h3>
+
+                        <p>
+                            After Harry Potter, Emma continued her acting
+                            career with films including The Perks of Being
+                            a Wallflower, Beauty and the Beast and
+                            Little Women.
+                        </p>
+
+                        <a href="#" class="read-more">
+                            Read More →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
 
         </div>
 
-
-        <!-- CARD 3 -->
-        <div class="col-12 col-md-6 col-lg-4">
-
-            <article class="card h-100 shadow border-0">
-
-                <img src="pictures.jpg/movies.jpg"
-                     class="card-img-top"
-                     alt="Emma Watson movie career"
-                     loading="lazy">
-
-                <div class="card-body d-flex flex-column p-4">
-
-                    <h2 class="card-title h4 fw-bold">
-                        Beyond Hogwarts
-                    </h2>
-
-                    <p class="card-text text-muted">
-                        After Harry Potter, Emma continued her acting
-                        career with films including The Perks of Being
-                        a Wallflower, Beauty and the Beast and
-                        Little Women.
-                    </p>
-
-                    <a href="#"
-                       class="btn btn-dark mt-auto">
-                        Read More
-                    </a>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </section>
-
-</main>
+    </main>
 
 
-    <!-- FOOTER -->
-    <footer class="text-center py-4">
+    <!-- ================= FOOTER ================= -->
 
-        <p class="mb-0">
-            &copy; 2026 Emma Watson Blog
+    <footer class="site-footer">
+
+        <p>
+            © 2026 Emma Watson Blog
+        </p>
+
+        <p class="footer-small">
+            Actress • Activist • Inspiration ♡
         </p>
 
     </footer>
 
 
-    <!-- Bootstrap JavaScript -->
     <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

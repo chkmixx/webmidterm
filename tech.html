@@ -7,7 +7,7 @@
 
     <title>Tech | Emma Watson</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap -->
     <link rel="stylesheet"
           href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
 
@@ -15,70 +15,100 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-    <!-- NAVIGATION -->
-    <header>
-        <nav class="nav-links">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="aboutme.html">About</a></li>
-                <li><a href="tech.html" class="active">Tech</a></li>
-                <li><a href="travel.html">Travel</a></li>
-                <li><a href="lifestyle.html">Lifestyle</a></li>
-                <li><a href="food.html">Food</a></li>
-            </ul>
-        </nav>
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="main-nav">
+
+        <div class="logo">
+            ♡ EMMA WATSON
+        </div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutme.html">About</a></li>
+            <li><a href="tech.html" class="active">Tech</a></li>
+            <li><a href="travel.html">Travel</a></li>
+            <li><a href="lifestyle.html">Lifestyle</a></li>
+            <li><a href="food.html">Food</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <header class="page-hero">
+
+        <p class="hero-small">
+            DIGITAL • EDUCATION • SUSTAINABILITY
+        </p>
+
+        <h1>
+            Emma Watson & Technology
+        </h1>
+
+        <p class="hero-description">
+            Explore Emma Watson's connection with digital media,
+            education and sustainable ideas.
+        </p>
+
     </header>
 
 
-    <!-- MAIN CONTENT -->
-    <main class="container py-5">
+    <!-- ================= CONTENT ================= -->
 
-        <!-- TITLE -->
-        <section class="text-center mb-5">
+    <main class="container content-section">
 
-            <h1 class="display-5 fw-bold">
-                Emma Watson & Technology
-            </h1>
+        <div class="section-heading">
 
-            <p class="text-muted fs-5">
-                Explore Emma Watson's connection with digital media,
-                education and sustainable ideas.
-            </p>
+            <h2>Stories & Ideas</h2>
 
-        </section>
+            <div class="heading-line"></div>
+
+        </div>
 
 
-        <!-- BOOTSTRAP GRID -->
-        <section class="row g-4">
+        <div class="row g-4">
 
 
-            <!-- CARD 1 -->
+            <!-- ================= CARD 1 ================= -->
+
             <div class="col-12 col-md-6 col-lg-4">
 
-                <article class="card h-100 shadow border-0">
+                <article class="emma-card">
 
-                    <img src="pictures.jpg/digital-voice.jpg"
-                         class="card-img-top"
-                         alt="Emma Watson using digital media">
+                    <div class="emma-image">
 
-                    <div class="card-body d-flex flex-column p-4">
+                        <img
+                            src="pictures.jpg/digital-voice.jpg"
+                            alt="Emma Watson digital voice"
+                            loading="lazy"
+                        >
 
-                        <h2 class="card-title h4 fw-bold">
+                    </div>
+
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Tech
+                        </span>
+
+                        <h3>
                             Digital Voice
-                        </h2>
+                        </h3>
 
-                        <p class="card-text text-muted">
-                            Emma Watson uses digital platforms to
-                            communicate her ideas and support social
-                            causes. Social media has helped her reach
-                            people around the world.
+                        <p>
+                            Emma Watson has a strong presence in digital
+                            media. Online platforms have helped bring
+                            attention to her work, ideas and advocacy.
                         </p>
 
-                        <a href="#"
-                           class="btn btn-dark mt-auto">
-                            Read More
+                        <a href="#" class="read-more">
+                            Read More →
                         </a>
 
                     </div>
@@ -88,32 +118,42 @@
             </div>
 
 
-            <!-- CARD 2 -->
+            <!-- ================= CARD 2 ================= -->
+
             <div class="col-12 col-md-6 col-lg-4">
 
-                <article class="card h-100 shadow border-0">
+                <article class="emma-card">
 
-                    <img src="pictures.jpg/education.jpg"
-                         class="card-img-top"
-                         alt="Emma Watson at graduation"
-                         loading="lazy">
+                    <div class="emma-image">
 
-                    <div class="card-body d-flex flex-column p-4">
+                        <img
+                            src="pictures.jpg/education.jpg"
+                            alt="Emma Watson education"
+                            loading="lazy"
+                        >
 
-                        <h2 class="card-title h4 fw-bold">
+                    </div>
+
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
                             Education
-                        </h2>
+                        </span>
 
-                        <p class="card-text text-muted">
+                        <h3>
+                            Education
+                        </h3>
+
+                        <p>
                             Emma Watson graduated from Brown University
-                            with a bachelor's degree in English
-                            literature. Education has played an important
-                            role in her personal development.
+                            with a bachelor's degree in English literature.
+                            Education has remained an important part of
+                            her personal development.
                         </p>
 
-                        <a href="#"
-                           class="btn btn-dark mt-auto">
-                            Read More
+                        <a href="#" class="read-more">
+                            Read More →
                         </a>
 
                     </div>
@@ -123,32 +163,41 @@
             </div>
 
 
-            <!-- CARD 3 -->
+            <!-- ================= CARD 3 ================= -->
+
             <div class="col-12 col-md-6 col-lg-4">
 
-                <article class="card h-100 shadow border-0">
+                <article class="emma-card">
 
-                    <img src="pictures.jpg/sustainability.jpg"
-                         class="card-img-top"
-                         alt="Emma Watson sustainable fashion"
-                         loading="lazy">
+                    <div class="emma-image">
 
-                    <div class="card-body d-flex flex-column p-4">
+                        <img
+                            src="pictures.jpg/sustainability.jpg"
+                            alt="Emma Watson sustainable fashion"
+                            loading="lazy"
+                        >
 
-                        <h2 class="card-title h4 fw-bold">
+                    </div>
+
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
                             Sustainability
-                        </h2>
+                        </span>
 
-                        <p class="card-text text-muted">
-                            Emma Watson supports more responsible
-                            approaches to fashion and has used her
-                            public appearances to promote sustainable
-                            and ethical clothing.
+                        <h3>
+                            Sustainable Fashion
+                        </h3>
+
+                        <p>
+                            Emma Watson has promoted more responsible
+                            approaches to fashion and has used public
+                            appearances to highlight sustainable clothing.
                         </p>
 
-                        <a href="#"
-                           class="btn btn-dark mt-auto">
-                            Read More
+                        <a href="#" class="read-more">
+                            Read More →
                         </a>
 
                     </div>
@@ -157,22 +206,27 @@
 
             </div>
 
-        </section>
+
+        </div>
 
     </main>
 
 
-    <!-- FOOTER -->
-    <footer class="text-center py-4 mt-5">
+    <!-- ================= FOOTER ================= -->
 
-        <p class="mb-0">
-            &copy; 2026 Emma Watson Blog
+    <footer class="site-footer">
+
+        <p>
+            © 2026 Emma Watson Blog
+        </p>
+
+        <p class="footer-small">
+            Actress • Activist • Inspiration ♡
         </p>
 
     </footer>
 
 
-    <!-- Bootstrap JavaScript -->
     <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
