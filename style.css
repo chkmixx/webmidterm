@@ -45,7 +45,6 @@ button {
     cursor: pointer;
 }
 
-/* NAVIGATION */
 
 .main-nav,
 .site-header,
@@ -116,7 +115,7 @@ button {
     color: var(--brown);
 }
 
-/* HOME */
+
 
 .home-hero,
 .page-hero {
@@ -184,7 +183,7 @@ button {
     box-shadow: var(--shadow);
 }
 
-/* CONTENT */
+
 
 .content-section {
     max-width: 1200px;
@@ -261,7 +260,7 @@ button {
     margin-top: 10px;
 }
 
-/* ABOUT */
+
 
 .header {
     min-height: 76px;
@@ -394,36 +393,10 @@ button {
     border-color: var(--dark-pink);
 }
 
-/* LIFESTYLE AND FOOD */
 
-.site-header {
-    padding: 15px 7%;
-}
 
-.site-header .navbar {
-    padding: 0;
-}
 
-.site-header .navbar-brand {
-    color: var(--brown);
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: 22px;
-    font-weight: 600;
-}
 
-.site-header .navbar-brand:hover {
-    color: var(--dark-pink);
-}
-
-.card {
-    border-color: var(--border);
-}
-
-.card:hover {
-    transform: translateY(-4px);
-}
-
-/* FOOTER */
 
 .site-footer {
     margin-top: 40px;
@@ -454,7 +427,6 @@ button {
     color: var(--pink);
 }
 
-/* RESPONSIVE */
 
 @media (max-width: 992px) {
     .main-nav,
