@@ -226,26 +226,104 @@ $(document).ready(function () {
     });
 
 
-    $("#gallery img").on("click", function () {
+ let currentImage = 0;
 
-        let image = $(this).attr("src");
+$("#gallery img").on("click", function () {
 
-        $("#lightboxImage").attr("src", image);
+    currentImage = $("#gallery img").index(this);
 
-        $("#lightbox").fadeIn(300);
+    let image = $(this).attr("src");
+
+    $("#lightboxImage")
+        .attr("src", image)
+        .hide()
+        .fadeIn(300);
+
+    $("#lightbox")
+        .css("display", "flex")
+        .hide()
+        .fadeIn(300);
+
+});
+
+
+$("#closeLightbox").on("click", function () {
+
+    $("#lightbox").fadeOut(300);
+
+});
+
+
+$("#prevImage").on("click", function (e) {
+
+    e.stopPropagation();
+
+    let images = $("#gallery img");
+
+    currentImage--;
+
+    if (currentImage < 0) {
+        currentImage = images.length - 1;
+    }
+
+    $("#lightboxImage").fadeOut(200, function () {
+
+        $(this)
+            .attr("src", images.eq(currentImage).attr("src"))
+            .fadeIn(300);
+
     });
 
+});
 
-    $("#closeLightbox").on("click", function () {
-        $("#lightbox").fadeOut(300);
+
+$("#nextImage").on("click", function (e) {
+
+    e.stopPropagation();
+
+    let images = $("#gallery img");
+
+    currentImage++;
+
+    if (currentImage >= images.length) {
+        currentImage = 0;
+    }
+
+    $("#lightboxImage").fadeOut(200, function () {
+
+        $(this)
+            .attr("src", images.eq(currentImage).attr("src"))
+            .fadeIn(300);
+
     });
 
+});
 
-    $("#lightbox").on("click", function (e) {
 
-        if (e.target === this) {
-            $(this).fadeOut(300);
-        }
-    });
+$("#lightbox").on("click", function (e) {
+
+    if (e.target === this) {
+        $(this).fadeOut(300);
+    }
+
+});
+
+
+$("#lightboxImage").on("mouseenter", function () {
+
+    $(this).animate({
+        opacity: 0.85
+    }, 150);
+
+});
+
+
+$("#lightboxImage").on("mouseleave", function () {
+
+    $(this).animate({
+        opacity: 1
+    }, 150);
+
+});
 
 });
