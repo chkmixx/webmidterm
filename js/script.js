@@ -1,77 +1,202 @@
 $(document).ready(function () {
 
     $("#registrationForm").on("submit", function (e) {
+
         e.preventDefault();
 
         let name = $("#name").val().trim();
         let email = $("#email").val().trim();
+        let message = $("#message").val().trim();
         let password = $("#password").val();
         let confirmPassword = $("#confirmPassword").val();
-        let message = $("#message").val().trim();
 
-        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         let valid = true;
 
         $(".error-message").text("");
-        $(".success-message").text("");
+        $("#formSuccess").text("");
 
         if (name === "") {
-            $("#nameError").text("Name is required");
+            $("#nameError").text("Name is required.");
             valid = false;
         }
 
-        if (!emailPattern.test(email)) {
-            $("#emailError").text("Enter a valid email");
+        if (!emailRegex.test(email)) {
+            $("#emailError").text("Enter a valid email address.");
             valid = false;
         }
 
         if (message === "") {
-            $("#messageError").text("Message is required");
+            $("#messageError").text("Message is required.");
             valid = false;
         }
 
         if (password.length < 6) {
-            $("#passwordError").text("Password must contain at least 6 characters");
+            $("#passwordError").text("Password must contain at least 6 characters.");
             valid = false;
         }
 
         if (password !== confirmPassword) {
-            $("#confirmPasswordError").text("Passwords do not match");
+            $("#confirmPasswordError").text("Passwords do not match.");
             valid = false;
         }
 
         if (valid) {
             $("#formSuccess").text("Registration successful!");
-            this.reset();
+            $("#registrationForm")[0].reset();
             $("#passwordStrength").text("");
         }
     });
 
+
     $("#password").on("input", function () {
+
         let password = $(this).val();
-        let result = "";
+        let text = "";
 
         if (password.length === 0) {
-            result = "";
+            text = "";
         } else if (password.length < 6) {
-            result = "Weak password";
+            text = "Weak password";
         } else if (password.length < 10) {
-            result = "Medium password";
+            text = "Medium password";
         } else {
-            result = "Strong password";
+            text = "Strong password";
         }
 
-        $("#passwordStrength").text(result);
+        $("#passwordStrength").text(text);
     });
 
+
+    let books = [
+        {
+            id: 1,
+            title: "Little Women",
+            author: "Louisa May Alcott"
+        },
+        {
+            id: 2,
+            title: "The Little Prince",
+            author: "Antoine de Saint-Exupéry"
+        }
+    ];
+
+
+    function displayBooks() {
+
+        $("#booksBody").empty();
+
+        books.forEach(function (book) {
+
+            let row = `
+                <tr>
+                    <td>${book.id}</td>
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>
+                        <button class="btn btn-sm btn-dark edit-book" data-id="${book.id}">
+                            Edit
+                        </button>
+
+                        <button class="btn btn-sm btn-danger delete-book" data-id="${book.id}">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            `;
+
+            $("#booksBody").append(row);
+        });
+    }
+
+
+    displayBooks();
+
+
+    $("#bookForm").on("submit", function (e) {
+
+        e.preventDefault();
+
+        let title = $("#bookTitle").val().trim();
+        let author = $("#bookAuthor").val().trim();
+
+        if (title === "" || author === "") {
+            return;
+        }
+
+        let newId = books.length > 0
+            ? Math.max(...books.map(book => book.id)) + 1
+            : 1;
+
+        books.push({
+            id: newId,
+            title: title,
+            author: author
+        });
+
+        displayBooks();
+
+        $("#bookForm")[0].reset();
+    });
+
+
+    $(document).on("click", ".delete-book", function () {
+
+        let id = Number($(this).data("id"));
+
+        let confirmed = confirm("Are you sure you want to delete this book?");
+
+        if (confirmed) {
+            books = books.filter(function (book) {
+                return book.id !== id;
+            });
+
+            displayBooks();
+        }
+    });
+
+
+    $(document).on("click", ".edit-book", function () {
+
+        let id = Number($(this).data("id"));
+
+        let book = books.find(function (book) {
+            return book.id === id;
+        });
+
+        if (!book) {
+            return;
+        }
+
+        let newTitle = prompt("Enter new book title:", book.title);
+
+        if (newTitle === null) {
+            return;
+        }
+
+        let newAuthor = prompt("Enter new author:", book.author);
+
+        if (newAuthor === null) {
+            return;
+        }
+
+        book.title = newTitle.trim();
+        book.author = newAuthor.trim();
+
+        displayBooks();
+    });
+
+
     $("#searchInput").on("input", function () {
-        let search = $(this).val().toLowerCase();
+
+        let value = $(this).val().toLowerCase();
 
         $(".filter-item").each(function () {
+
             let text = $(this).text().toLowerCase();
 
-            if (text.includes(search)) {
+            if (text.includes(value)) {
                 $(this).show();
             } else {
                 $(this).hide();
@@ -79,14 +204,20 @@ $(document).ready(function () {
         });
     });
 
+
     $(".category-btn").on("click", function () {
+
         let category = $(this).data("category");
 
         $(".category-btn").removeClass("active");
+
         $(this).addClass("active");
 
         $(".filter-item").each(function () {
-            if (category === "all" || $(this).data("category") === category) {
+
+            let itemCategory = $(this).data("category");
+
+            if (category === "all" || category === itemCategory) {
                 $(this).show();
             } else {
                 $(this).hide();
@@ -94,18 +225,24 @@ $(document).ready(function () {
         });
     });
 
-    $("#gallery img").on("click", function () {
-        let src = $(this).attr("src");
 
-        $("#lightboxImage").attr("src", src);
+    $("#gallery img").on("click", function () {
+
+        let image = $(this).attr("src");
+
+        $("#lightboxImage").attr("src", image);
+
         $("#lightbox").fadeIn(300);
     });
+
 
     $("#closeLightbox").on("click", function () {
         $("#lightbox").fadeOut(300);
     });
 
+
     $("#lightbox").on("click", function (e) {
+
         if (e.target === this) {
             $(this).fadeOut(300);
         }
