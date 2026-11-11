@@ -1,180 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food | Emma Watson</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Emma Watson | Food</title>
+
+    <link rel="stylesheet"
+          href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
 </head>
 
 <body>
 
-<header class="site-header">
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">♡ EMMA WATSON</a>
+    <nav class="main-nav">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="aboutme.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="tech.html">Tech</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="travel.html">Travel</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="lifestyle.html">Lifestyle</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="food.html">Food</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="logo">
+            ♡ EMMA WATSON
         </div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutme.html">About</a></li>
+            <li><a href="tech.html">Tech</a></li>
+            <li><a href="travel.html">Travel</a></li>
+            <li><a href="lifestyle.html">Lifestyle</a></li>
+            <li><a href="food.html" class="active">Food</a></li>
+        </ul>
+
     </nav>
-</header>
 
-<main>
 
-    <section class="py-5 text-center">
+    <header class="page-hero">
+
         <div class="container">
-            <h1>Food & Healthy Lifestyle</h1>
-            <p class="lead">
-                A balanced lifestyle also includes healthy food, mindful choices and enjoying meals with friends and family.
-            </p>
-        </div>
-    </section>
 
-    <section class="container pb-5">
+            <p class="hero-small">
+                FOOD • WELLNESS • BALANCE
+            </p>
+
+            <h1>
+                Food & Healthy Lifestyle
+            </h1>
+
+            <p class="hero-description">
+                A balanced lifestyle also includes healthy food,
+                mindful choices and enjoying meals with friends and family.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <main class="container content-section">
+
+        <div class="section-heading">
+
+            <h2>
+                Food & Ideas
+            </h2>
+
+            <div class="heading-line"></div>
+
+        </div>
+
+
         <div class="row g-4">
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 p-3">
-                    <div class="card-body">
-                        <h2 class="h4">Healthy Breakfast</h2>
-                        <p>A healthy breakfast can include fruits, yogurt, oatmeal and other nutritious foods.</p>
-                        <button class="btn btn-dark">Read More</button>
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="emma-card">
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Breakfast
+                        </span>
+
+                        <h3>
+                            Healthy Breakfast
+                        </h3>
+
+                        <p>
+                            A healthy breakfast can include fruits, yogurt,
+                            oatmeal and other nutritious foods.
+                        </p>
+
+                        <a href="#" class="read-more">
+                            Read More →
+                        </a>
+
                     </div>
-                </div>
+
+                </article>
+
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 p-3">
-                    <div class="card-body">
-                        <h2 class="h4">Fresh Fruits</h2>
-                        <p>Fruits are an easy way to add vitamins, minerals and natural sweetness to everyday meals.</p>
-                        <button class="btn btn-dark">Discover</button>
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="emma-card">
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Fruits
+                        </span>
+
+                        <h3>
+                            Fresh Fruits
+                        </h3>
+
+                        <p>
+                            Fruits are an easy way to add vitamins, minerals
+                            and natural sweetness to everyday meals.
+                        </p>
+
+                        <a href="#" class="read-more">
+                            Discover →
+                        </a>
+
                     </div>
-                </div>
+
+                </article>
+
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 p-3">
-                    <div class="card-body">
-                        <h2 class="h4">Balanced Meals</h2>
-                        <p>A balanced meal can combine vegetables, protein, grains and healthy fats.</p>
-                        <button class="btn btn-dark">Explore</button>
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="emma-card">
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Nutrition
+                        </span>
+
+                        <h3>
+                            Balanced Meals
+                        </h3>
+
+                        <p>
+                            A balanced meal can combine vegetables,
+                            protein, grains and healthy fats.
+                        </p>
+
+                        <a href="#" class="read-more">
+                            Explore →
+                        </a>
+
                     </div>
-                </div>
+
+                </article>
+
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 p-3">
-                    <div class="card-body">
-                        <h2 class="h4">Plant-Based Choices</h2>
-                        <p>Vegetables, beans, grains and fruits can be part of a varied and balanced diet.</p>
-                        <button class="btn btn-dark">Learn More</button>
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="emma-card">
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Plant-Based
+                        </span>
+
+                        <h3>
+                            Plant-Based Choices
+                        </h3>
+
+                        <p>
+                            Vegetables, beans, grains and fruits can be part
+                            of a varied and balanced diet.
+                        </p>
+
+                        <a href="#" class="read-more">
+                            Learn More →
+                        </a>
+
                     </div>
-                </div>
+
+                </article>
+
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 p-3">
-                    <div class="card-body">
-                        <h2 class="h4">Mindful Eating</h2>
-                        <p>Mindful eating means paying attention to your food, eating slowly and enjoying the meal.</p>
-                        <button class="btn btn-dark">Read More</button>
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="emma-card">
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Wellness
+                        </span>
+
+                        <h3>
+                            Mindful Eating
+                        </h3>
+
+                        <p>
+                            Mindful eating means paying attention to your
+                            food, eating slowly and enjoying the meal.
+                        </p>
+
+                        <a href="#" class="read-more">
+                            Read More →
+                        </a>
+
                     </div>
-                </div>
+
+                </article>
+
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 p-3">
-                    <div class="card-body">
-                        <h2 class="h4">Favorite Recipes</h2>
-                        <p>Simple recipes can make healthy eating enjoyable and easy to include in everyday life.</p>
-                        <button class="btn btn-dark">View Recipes</button>
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="emma-card">
+
+                    <div class="emma-card-content">
+
+                        <span class="emma-tag">
+                            Recipes
+                        </span>
+
+                        <h3>
+                            Favorite Recipes
+                        </h3>
+
+                        <p>
+                            Simple recipes can make healthy eating enjoyable
+                            and easy to include in everyday life.
+                        </p>
+
+                        <a href="#" class="read-more">
+                            View Recipes →
+                        </a>
+
                     </div>
-                </div>
+
+                </article>
+
             </div>
 
         </div>
-    </section>
 
-    <section class="container pb-5">
-        <h2 class="mb-4">Healthy Food Guide</h2>
+    </main>
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>Food</th>
-                        <th>Category</th>
-                        <th>Benefit</th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    <tr>
-                        <td>Oatmeal</td>
-                        <td>Breakfast</td>
-                        <td>Good source of fiber</td>
-                    </tr>
-                    <tr>
-                        <td>Apple</td>
-                        <td>Fruit</td>
-                        <td>Rich in vitamins</td>
-                    </tr>
-                    <tr>
-                        <td>Avocado</td>
-                        <td>Healthy fats</td>
-                        <td>Contains healthy fats</td>
-                    </tr>
-                    <tr>
-                        <td>Broccoli</td>
-                        <td>Vegetables</td>
-                        <td>Rich in nutrients</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+    <footer class="site-footer">
 
-</main>
+        <p>
+            © 2026 Emma Watson Blog
+        </p>
 
-<footer class="site-footer">
-    <p>© 2026 Emma Watson Blog</p>
-    <p>Contact: info@emmawatsonblog.com</p>
-    <div class="social-links">
-        <a href="#">Instagram</a> |
-        <a href="#">Twitter</a> |
-        <a href="#">Facebook</a>
-    </div>
-</footer>
+        <p class="footer-small">
+            Actress • Activist • Inspiration ♡
+        </p>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <p>
+            <a href="mailto:info@emmawatsonblog.com">
+                Contact
+            </a>
+            &nbsp; | &nbsp;
+            <a href="#">
+                Instagram
+            </a>
+            &nbsp; | &nbsp;
+            <a href="#">
+                Twitter
+            </a>
+            &nbsp; | &nbsp;
+            <a href="#">
+                Facebook
+            </a>
+        </p>
+
+    </footer>
+
+
+    <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
