@@ -51,56 +51,81 @@
 
     </header>
 
-    <div class="search-filter-section mb-5">
-    <div class="row g-3 align-items-center">
-        <div class="col-12 col-md-6">
-            <input
-                type="text"
-                id="searchInput"
-                class="form-control"
-                placeholder="Search posts...">
-        </div>
-
-        <div class="col-12 col-md-6">
-            <div class="d-flex gap-2 flex-wrap">
-                <button class="btn btn-outline-dark category-btn active" data-category="all">
-                    All
-                </button>
-
-                <button class="btn btn-outline-dark category-btn" data-category="technology">
-                    Technology
-                </button>
-
-                <button class="btn btn-outline-dark category-btn" data-category="education">
-                    Education
-                </button>
-
-                <button class="btn btn-outline-dark category-btn" data-category="digital">
-                    Digital
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
     <main class="container content-section">
 
+        <div class="search-filter-section mb-5">
+
+            <div class="row g-3 align-items-center">
+
+                <div class="col-12 col-md-6">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="form-control"
+                        placeholder="Search posts...">
+
+                </div>
+
+                <div class="col-12 col-md-6">
+
+                    <div class="d-flex gap-2 flex-wrap">
+
+                        <button
+                            class="btn btn-outline-dark category-btn active"
+                            data-category="all">
+                            All
+                        </button>
+
+                        <button
+                            class="btn btn-outline-dark category-btn"
+                            data-category="technology">
+                            Technology
+                        </button>
+
+                        <button
+                            class="btn btn-outline-dark category-btn"
+                            data-category="education">
+                            Education
+                        </button>
+
+                        <button
+                            class="btn btn-outline-dark category-btn"
+                            data-category="digital">
+                            Digital
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
         <div class="section-heading">
+
             <h2>Stories & Ideas</h2>
+
             <div class="heading-line"></div>
+
         </div>
 
         <div class="row g-4">
 
-            <div class="col-12 col-md-6 col-lg-4">
+            <div
+                class="col-12 col-md-6 col-lg-4 filter-item"
+                data-category="digital">
 
                 <article class="emma-card">
 
                     <div class="emma-image">
+
                         <img
                             src="pictures.jpg/digital-voice.jpg"
                             alt="Emma Watson digital voice"
                             loading="lazy">
+
                     </div>
 
                     <div class="emma-card-content">
@@ -109,7 +134,9 @@
                             Digital
                         </span>
 
-                        <h3>Digital Voice</h3>
+                        <h3>
+                            Digital Voice
+                        </h3>
 
                         <p>
                             Explore Emma Watson's connection with
@@ -126,15 +153,19 @@
 
             </div>
 
-            <div class="col-12 col-md-6 col-lg-4">
+            <div
+                class="col-12 col-md-6 col-lg-4 filter-item"
+                data-category="education">
 
                 <article class="emma-card">
 
                     <div class="emma-image">
+
                         <img
                             src="pictures.jpg/oxford.jpg"
                             alt="Emma Watson education"
                             loading="lazy">
+
                     </div>
 
                     <div class="emma-card-content">
@@ -143,7 +174,9 @@
                             Education
                         </span>
 
-                        <h3>Education</h3>
+                        <h3>
+                            Education
+                        </h3>
 
                         <p>
                             Emma Watson has always shown interest in
@@ -160,15 +193,19 @@
 
             </div>
 
-            <div class="col-12 col-md-6 col-lg-4">
+            <div
+                class="col-12 col-md-6 col-lg-4 filter-item"
+                data-category="technology">
 
                 <article class="emma-card">
 
                     <div class="emma-image">
+
                         <img
                             src="pictures.jpg/movies.jpg"
                             alt="Emma Watson sustainability"
                             loading="lazy">
+
                     </div>
 
                     <div class="emma-card-content">
@@ -177,7 +214,9 @@
                             Sustainability
                         </span>
 
-                        <h3>Modern Ideas</h3>
+                        <h3>
+                            Modern Ideas
+                        </h3>
 
                         <p>
                             Technology and sustainability can create
@@ -200,7 +239,9 @@
 
     <footer class="site-footer">
 
-        <p>© 2026 Emma Watson Blog</p>
+        <p>
+            © 2026 Emma Watson Blog
+        </p>
 
         <p class="footer-small">
             Actress • Activist • Inspiration ♡
@@ -208,7 +249,9 @@
 
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 
