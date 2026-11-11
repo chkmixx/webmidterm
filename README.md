@@ -59,3 +59,15 @@ Tomiris:
 Published website:
 https://chkmixx.github.io/webmidterm/
 
+
+
+# EndTerm part 
+# . JavaScript & jQuery Requirements
+
+- first we created JavaScript file and used jQuery
+- Form Validation: works on about me page
+- Dynamic Search & Filter Functionality:
+- Dynamic Table with CRUD Operations: works on about me page 
+- Image Gallery: included Travel page
+- 
+
