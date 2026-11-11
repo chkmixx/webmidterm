@@ -35,16 +35,16 @@
         <div class="container">
 
             <div class="hero-small">
-                PLACES • MOVIES • EXPERIENCES
+                TRAVEL • PLACES • MEMORIES
             </div>
 
             <h1>
-                Emma Watson's Journey
+                Emma Watson & Travel
             </h1>
 
             <p class="hero-description">
-                Explore the places, movies and experiences that shaped
-                Emma Watson's life and career.
+                Explore beautiful places, memorable journeys
+                and inspiring travel experiences.
             </p>
 
         </div>
@@ -55,13 +55,13 @@
 
         <div class="section-heading">
 
-            <h2>Her Journey</h2>
+            <h2>Travel Gallery</h2>
 
             <div class="heading-line"></div>
 
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4" id="gallery">
 
             <div class="col-12 col-md-6 col-lg-4">
 
@@ -71,7 +71,8 @@
 
                         <img
                             src="pictures.jpg/oxford.jpg"
-                            alt="Emma Watson early life"
+                            alt="Oxford"
+                            class="gallery-image"
                             loading="lazy">
 
                     </div>
@@ -79,21 +80,17 @@
                     <div class="emma-card-content">
 
                         <span class="emma-tag">
-                            Early Life
+                            UK
                         </span>
 
-                        <h3>Oxford: Early Life</h3>
+                        <h3>
+                            Oxford
+                        </h3>
 
                         <p>
-                            Emma Watson grew up in Oxfordshire,
-                            England. She studied acting, singing and
-                            dancing before beginning her professional
-                            acting career.
+                            A beautiful place connected with
+                            Emma Watson's academic journey.
                         </p>
-
-                        <a href="#" class="read-more">
-                            Read More →
-                        </a>
 
                     </div>
 
@@ -108,8 +105,9 @@
                     <div class="emma-image">
 
                         <img
-                            src="pictures.jpg/harry-potter.jpg"
-                            alt="Harry Potter"
+                            src="pictures.jpg/travel.jpg"
+                            alt="Travel experience"
+                            class="gallery-image"
                             loading="lazy">
 
                     </div>
@@ -117,20 +115,17 @@
                     <div class="emma-card-content">
 
                         <span class="emma-tag">
-                            Harry Potter
+                            Travel
                         </span>
 
-                        <h3>Harry Potter Journey</h3>
+                        <h3>
+                            New Places
+                        </h3>
 
                         <p>
-                            Emma became internationally known for
-                            playing Hermione Granger in the Harry Potter
-                            film series.
+                            Discovering new places can bring
+                            inspiration and unforgettable memories.
                         </p>
-
-                        <a href="#" class="read-more">
-                            Read More →
-                        </a>
 
                     </div>
 
@@ -145,8 +140,9 @@
                     <div class="emma-image">
 
                         <img
-                            src="pictures.jpg/movies.jpg"
-                            alt="Emma Watson movies"
+                            src="pictures.jpg/emma1_.jpg"
+                            alt="Emma Watson"
+                            class="gallery-image"
                             loading="lazy">
 
                     </div>
@@ -154,21 +150,17 @@
                     <div class="emma-card-content">
 
                         <span class="emma-tag">
-                            Movies
+                            Memories
                         </span>
 
-                        <h3>Beyond Hogwarts</h3>
+                        <h3>
+                            Inspiration
+                        </h3>
 
                         <p>
-                            After Harry Potter, Emma continued her
-                            acting career with films including The Perks
-                            of Being a Wallflower, Beauty and the Beast
-                            and Little Women.
+                            Travel can create meaningful memories
+                            and inspire new ideas.
                         </p>
-
-                        <a href="#" class="read-more">
-                            Read More →
-                        </a>
 
                     </div>
 
@@ -180,9 +172,36 @@
 
     </main>
 
+    <div id="lightbox">
+
+        <button id="closeLightbox" type="button">
+            &times;
+        </button>
+
+        <button id="prevImage" type="button">
+            &#10094;
+        </button>
+
+        <div class="lightbox-content">
+
+            <img
+                id="lightboxImage"
+                src=""
+                alt="Gallery image">
+
+        </div>
+
+        <button id="nextImage" type="button">
+            &#10095;
+        </button>
+
+    </div>
+
     <footer class="site-footer">
 
-        <p>© 2026 Emma Watson Blog</p>
+        <p>
+            © 2026 Emma Watson Blog
+        </p>
 
         <p class="footer-small">
             Actress • Activist • Inspiration ♡
@@ -190,7 +209,9 @@
 
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 
