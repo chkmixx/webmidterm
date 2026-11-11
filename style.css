@@ -704,3 +704,47 @@ img {
         gap: 20px !important;
     }
 }
+.page-hero {
+    background: #fff5f7 !important;
+    padding: 80px 0 70px !important;
+    min-height: auto !important;
+    height: auto !important;
+}
+
+.page-hero .hero-small {
+    font-family: "Poppins", sans-serif !important;
+    font-size: 16px !important;
+    color: #4b2929 !important;
+    margin-bottom: 25px !important;
+}
+
+.page-hero h1 {
+    font-family: "Playfair Display", serif !important;
+    font-size: 64px !important;
+    line-height: 1.1 !important;
+    color: #4b2929 !important;
+    margin: 0 0 25px !important;
+}
+
+.page-hero .hero-description {
+    font-family: "Poppins", sans-serif !important;
+    font-size: 18px !important;
+    line-height: 1.7 !important;
+    color: #6b5555 !important;
+    max-width: 650px !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 55px 20px 50px !important;
+    }
+
+    .page-hero h1 {
+        font-size: 42px !important;
+    }
+
+    .page-hero .hero-description {
+        font-size: 16px !important;
+    }
+}
