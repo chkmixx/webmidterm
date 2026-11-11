@@ -358,6 +358,35 @@ body:has(.lifestyle-page) {
     .section-heading h2 {
         font-size: 38px;
     }
+    .error-message {
+    color: #a94442;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.success-message {
+    color: #5f7f5f;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+#passwordStrength {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.about-table-section {
+    margin-top: 70px;
+}
+
+.contact-form {
+    margin-top: 70px;
+}
+
+#booksTable {
+    margin-top: 20px;
+}
 
     .emma-image {
         height: 250px;
