@@ -57,5 +57,6 @@ Tomiris:
 - CSS and responsive design
 
 Published website:
-https://chkmixx.github.io/webmidterm/
+https://chkmixx.github.io/webmidterm/ 
+
 
