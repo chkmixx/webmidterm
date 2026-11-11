@@ -673,5 +673,93 @@ button {
     .awards-table td {
         padding: 8px;
     }
-
+    .main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 25px;
 }
+
+.main-container > h1 {
+    text-align: center;
+    color: #4b2929;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 52px;
+    margin-bottom: 45px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.info-grid .card {
+    background: white;
+    border: 1px solid #ead3d8;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(75, 41, 41, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-grid .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(75, 41, 41, 0.12);
+}
+
+.info-grid .card h2 {
+    color: #4b2929;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.info-grid .card p,
+.info-grid .card li {
+    color: #765b5b;
+    line-height: 1.7;
+}
+
+.info-grid .card ul {
+    padding-left: 20px;
+}
+
+.info-grid .card li {
+    margin-bottom: 8px;
+}
+
+.quote {
+    margin: 0;
+    color: #765b5b;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+.site-footer {
+    text-align: center;
+    padding: 35px 20px;
+    background: white;
+    border-top: 1px solid #ead3d8;
+    color: #765b5b;
+}
+
+.site-footer a {
+    color: #765b5b;
+}
+
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-container {
+        padding: 50px 20px;
+    }
+
+    .main-container > h1 {
+        font-size: 40px;
+    }
+}
+
