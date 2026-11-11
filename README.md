@@ -9,7 +9,7 @@ Personal blog about Emma Watson.
 
 Group members:
 - Nurbolsyn
-- Sanya
+- Saniya
 - Tomiris
 
 Project description:
