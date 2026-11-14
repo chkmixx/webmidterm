@@ -1,165 +1,150 @@
 $(document).ready(function () {
-    let savedTheme = localStorage.getItem("theme");
 
-if (savedTheme === "dark") {
-    $("body").addClass("dark-theme");
-    $("#themeToggle").text("☀️");
-}
+    $("#registrationForm").on("submit", function (e) {
+        e.preventDefault();
+        validateForm();
+    });
 
-$("#themeToggle").on("click", function () {
+    $("#name").on("input", function () {
+        validateName();
+    });
 
-    $("body").toggleClass("dark-theme");
+    $("#email").on("input", function () {
+        validateEmail();
+    });
 
-    if ($("body").hasClass("dark-theme")) {
-        localStorage.setItem("theme", "dark");
-        $(this).text("☀️");
-    } else {
-        localStorage.setItem("theme", "light");
-        $(this).text("🌙");
-    }
-});
-function validateName() {
-    let name = $("#name").val().trim();
-
-    if (name === "") {
-        $("#nameError").text("Name is required.");
-        return false;
-    }
-
-    $("#nameError").text("");
-    return true;
-}
-
-function validateEmail() {
-    let email = $("#email").val().trim();
-    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (email === "") {
-        $("#emailError").text("Email is required.");
-        return false;
-    }
-
-    if (!emailRegex.test(email)) {
-        $("#emailError").text("Enter a valid email address.");
-        return false;
-    }
-
-    $("#emailError").text("");
-    return true;
-}
-
-function validateMessage() {
-    let message = $("#message").val().trim();
-
-    if (message === "") {
-        $("#messageError").text("Message is required.");
-        return false;
-    }
-
-    $("#messageError").text("");
-    return true;
-}
-
-function validatePassword() {
-    let password = $("#password").val();
-
-    if (password === "") {
-        $("#passwordError").text("Password is required.");
-        return false;
-    }
-
-    if (password.length < 6) {
-        $("#passwordError").text("Password must contain at least 6 characters.");
-        return false;
-    }
-
-    $("#passwordError").text("");
-    return true;
-}
-
-function validateConfirmPassword() {
-    let password = $("#password").val();
-    let confirmPassword = $("#confirmPassword").val();
-
-    if (confirmPassword === "") {
-        $("#confirmPasswordError").text("Please confirm your password.");
-        return false;
-    }
-
-    if (password !== confirmPassword) {
-        $("#confirmPasswordError").text("Passwords do not match.");
-        return false;
-    }
-
-    $("#confirmPasswordError").text("");
-    return true;
-}
-
-$("#name").on("input blur", function () {
-    validateName();
-});
-
-$("#email").on("input blur", function () {
-    validateEmail();
-});
-
-$("#message").on("input blur", function () {
-    validateMessage();
-});
-
-$("#password").on("input blur", function () {
-    validatePassword();
-});
-
-$("#confirmPassword").on("input blur", function () {
-    validateConfirmPassword();
-});
-
-$("#registrationForm").on("submit", function (e) {
-
-    e.preventDefault();
-
-    let validName = validateName();
-    let validEmail = validateEmail();
-    let validMessage = validateMessage();
-    let validPassword = validatePassword();
-    let validConfirmPassword = validateConfirmPassword();
-
-    if (
-        validName &&
-        validEmail &&
-        validMessage &&
-        validPassword &&
-        validConfirmPassword
-    ) {
-        $("#formSuccess").text("Registration successful!");
-
-        $("#registrationForm")[0].reset();
-
-        $("#passwordStrength").text("");
-    } else {
-        $("#formSuccess").text("");
-    }
-});
-
+    $("#message").on("input", function () {
+        validateMessage();
+    });
 
     $("#password").on("input", function () {
+        validatePassword();
+    });
 
-        let password = $(this).val();
+    $("#confirmPassword").on("input", function () {
+        validateConfirmPassword();
+    });
+
+
+    function validateName() {
+        let name = $("#name").val().trim();
+
+        if (name === "") {
+            $("#nameError").text("Name is required.");
+            return false;
+        }
+
+        $("#nameError").text("");
+        return true;
+    }
+
+
+    function validateEmail() {
+        let email = $("#email").val().trim();
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (email === "") {
+            $("#emailError").text("Email is required.");
+            return false;
+        }
+
+        if (!emailRegex.test(email)) {
+            $("#emailError").text("Enter a valid email address.");
+            return false;
+        }
+
+        $("#emailError").text("");
+        return true;
+    }
+
+
+    function validateMessage() {
+        let message = $("#message").val().trim();
+
+        if (message === "") {
+            $("#messageError").text("Message is required.");
+            return false;
+        }
+
+        $("#messageError").text("");
+        return true;
+    }
+
+
+    function validatePassword() {
+        let password = $("#password").val();
         let text = "";
 
         if (password.length === 0) {
-            text = "";
-        } else if (password.length < 6) {
+            $("#passwordStrength").text("");
+            $("#passwordError").text("Password is required.");
+            return false;
+        }
+
+        if (password.length < 6) {
             text = "Weak password";
+            $("#passwordError").text("Password must contain at least 6 characters.");
         } else if (password.length < 10) {
             text = "Medium password";
+            $("#passwordError").text("");
         } else {
             text = "Strong password";
+            $("#passwordError").text("");
         }
 
         $("#passwordStrength").text(text);
-    });
+
+        if ($("#confirmPassword").val() !== "") {
+            validateConfirmPassword();
+        }
+
+        return password.length >= 6;
+    }
+
+
+    function validateConfirmPassword() {
+        let password = $("#password").val();
+        let confirmPassword = $("#confirmPassword").val();
+
+        if (confirmPassword === "") {
+            $("#confirmPasswordError").text("Please confirm your password.");
+            return false;
+        }
+
+        if (password !== confirmPassword) {
+            $("#confirmPasswordError").text("Passwords do not match.");
+            return false;
+        }
+
+        $("#confirmPasswordError").text("");
+        return true;
+    }
+
+
+    function validateForm() {
+
+        let nameValid = validateName();
+        let emailValid = validateEmail();
+        let messageValid = validateMessage();
+        let passwordValid = validatePassword();
+        let confirmPasswordValid = validateConfirmPassword();
+
+        if (
+            nameValid &&
+            emailValid &&
+            messageValid &&
+            passwordValid &&
+            confirmPasswordValid
+        ) {
+            $("#formSuccess").text("Registration successful!");
+
+            $("#registrationForm")[0].reset();
+
+            $("#passwordStrength").text("");
+        } else {
+            $("#formSuccess").text("");
+        }
+    }
 
 
     let books = [
@@ -241,6 +226,7 @@ $("#registrationForm").on("submit", function (e) {
         let confirmed = confirm("Are you sure you want to delete this book?");
 
         if (confirmed) {
+
             books = books.filter(function (book) {
                 return book.id !== id;
             });
@@ -262,15 +248,25 @@ $("#registrationForm").on("submit", function (e) {
             return;
         }
 
-        let newTitle = prompt("Enter new book title:", book.title);
+        let newTitle = prompt(
+            "Enter new book title:",
+            book.title
+        );
 
         if (newTitle === null) {
             return;
         }
 
-        let newAuthor = prompt("Enter new author:", book.author);
+        let newAuthor = prompt(
+            "Enter new author:",
+            book.author
+        );
 
         if (newAuthor === null) {
+            return;
+        }
+
+        if (newTitle.trim() === "" || newAuthor.trim() === "") {
             return;
         }
 
@@ -303,14 +299,16 @@ $("#registrationForm").on("submit", function (e) {
         let category = $(this).data("category");
 
         $(".category-btn").removeClass("active");
-
         $(this).addClass("active");
 
         $(".filter-item").each(function () {
 
             let itemCategory = $(this).data("category");
 
-            if (category === "all" || category === itemCategory) {
+            if (
+                category === "all" ||
+                category === itemCategory
+            ) {
                 $(this).show();
             } else {
                 $(this).hide();
@@ -319,104 +317,108 @@ $("#registrationForm").on("submit", function (e) {
     });
 
 
- let currentImage = 0;
-
-$("#gallery img").on("click", function () {
-
-    currentImage = $("#gallery img").index(this);
-
-    let image = $(this).attr("src");
-
-    $("#lightboxImage")
-        .attr("src", image)
-        .hide()
-        .fadeIn(300);
-
-    $("#lightbox")
-        .css("display", "flex")
-        .hide()
-        .fadeIn(300);
-
-});
+    let currentImage = 0;
 
 
-$("#closeLightbox").on("click", function () {
+    $("#gallery img").on("click", function () {
 
-    $("#lightbox").fadeOut(300);
+        currentImage = $("#gallery img").index(this);
 
-});
+        let image = $(this).attr("src");
 
-
-$("#prevImage").on("click", function (e) {
-
-    e.stopPropagation();
-
-    let images = $("#gallery img");
-
-    currentImage--;
-
-    if (currentImage < 0) {
-        currentImage = images.length - 1;
-    }
-
-    $("#lightboxImage").fadeOut(200, function () {
-
-        $(this)
-            .attr("src", images.eq(currentImage).attr("src"))
+        $("#lightboxImage")
+            .attr("src", image)
+            .hide()
             .fadeIn(300);
 
-    });
-
-});
-
-
-$("#nextImage").on("click", function (e) {
-
-    e.stopPropagation();
-
-    let images = $("#gallery img");
-
-    currentImage++;
-
-    if (currentImage >= images.length) {
-        currentImage = 0;
-    }
-
-    $("#lightboxImage").fadeOut(200, function () {
-
-        $(this)
-            .attr("src", images.eq(currentImage).attr("src"))
+        $("#lightbox")
+            .css("display", "flex")
+            .hide()
             .fadeIn(300);
-
     });
 
-});
+
+    $("#closeLightbox").on("click", function () {
+
+        $("#lightbox").fadeOut(300);
+    });
 
 
-$("#lightbox").on("click", function (e) {
+    $("#prevImage").on("click", function (e) {
 
-    if (e.target === this) {
-        $(this).fadeOut(300);
-    }
+        e.stopPropagation();
 
-});
+        let images = $("#gallery img");
+
+        currentImage--;
+
+        if (currentImage < 0) {
+            currentImage = images.length - 1;
+        }
+
+        $("#lightboxImage").fadeOut(200, function () {
+
+            $(this)
+                .attr("src", images.eq(currentImage).attr("src"))
+                .fadeIn(300);
+        });
+    });
 
 
-$("#lightboxImage").on("mouseenter", function () {
+    $("#nextImage").on("click", function (e) {
 
-    $(this).animate({
-        opacity: 0.85
-    }, 150);
+        e.stopPropagation();
 
-});
+        let images = $("#gallery img");
+
+        currentImage++;
+
+        if (currentImage >= images.length) {
+            currentImage = 0;
+        }
+
+        $("#lightboxImage").fadeOut(200, function () {
+
+            $(this)
+                .attr("src", images.eq(currentImage).attr("src"))
+                .fadeIn(300);
+        });
+    });
 
 
-$("#lightboxImage").on("mouseleave", function () {
+    $("#lightbox").on("click", function (e) {
 
-    $(this).animate({
-        opacity: 1
-    }, 150);
+        if (e.target === this) {
+            $(this).fadeOut(300);
+        }
+    });
 
-});
+
+    $("#lightboxImage").on("mouseenter", function () {
+
+        $(this).animate({
+            opacity: 0.85
+        }, 150);
+    });
+
+
+    $("#lightboxImage").on("mouseleave", function () {
+
+        $(this).animate({
+            opacity: 1
+        }, 150);
+    });
+
+
+    $("#themeToggle").on("click", function () {
+
+        $("body").toggleClass("dark-mode");
+
+        if ($("body").hasClass("dark-mode")) {
+            $(this).text("☀️");
+        } else {
+            $(this).text("🌙");
+        }
+    });
 
 });
