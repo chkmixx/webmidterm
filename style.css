@@ -452,3 +452,51 @@ body:has(.lifestyle-page) {
 .gallery-image:hover {
     transform: scale(1.03);
 }
+.theme-btn {
+    border: 1px solid #5a2d2d;
+    background: transparent;
+    color: #5a2d2d;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.dark-theme {
+    background: #241919;
+    color: #f8eeee;
+}
+
+.dark-theme .main-nav {
+    background: #241919;
+}
+
+.dark-theme .main-nav a,
+.dark-theme .logo {
+    color: #f8eeee;
+}
+
+.dark-theme .content-section,
+.dark-theme .page-hero {
+    background: #241919;
+}
+
+.dark-theme .emma-card {
+    background: #332323;
+    color: #f8eeee;
+}
+
+.dark-theme .emma-card h3,
+.dark-theme .emma-card p {
+    color: #f8eeee;
+}
+
+.dark-theme .section-heading h2 {
+    color: #f8eeee;
+}
+
+.dark-theme .theme-btn {
+    color: #f8eeee;
+    border-color: #f8eeee;
+}
