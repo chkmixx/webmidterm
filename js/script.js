@@ -18,55 +18,129 @@ $("#themeToggle").on("click", function () {
         $(this).text("🌙");
     }
 });
+function validateName() {
+    let name = $("#name").val().trim();
 
-    $("#registrationForm").on("submit", function (e) {
+    if (name === "") {
+        $("#nameError").text("Name is required.");
+        return false;
+    }
 
-        e.preventDefault();
+    $("#nameError").text("");
+    return true;
+}
 
-        let name = $("#name").val().trim();
-        let email = $("#email").val().trim();
-        let message = $("#message").val().trim();
-        let password = $("#password").val();
-        let confirmPassword = $("#confirmPassword").val();
+function validateEmail() {
+    let email = $("#email").val().trim();
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email === "") {
+        $("#emailError").text("Email is required.");
+        return false;
+    }
 
-        let valid = true;
+    if (!emailRegex.test(email)) {
+        $("#emailError").text("Enter a valid email address.");
+        return false;
+    }
 
-        $(".error-message").text("");
+    $("#emailError").text("");
+    return true;
+}
+
+function validateMessage() {
+    let message = $("#message").val().trim();
+
+    if (message === "") {
+        $("#messageError").text("Message is required.");
+        return false;
+    }
+
+    $("#messageError").text("");
+    return true;
+}
+
+function validatePassword() {
+    let password = $("#password").val();
+
+    if (password === "") {
+        $("#passwordError").text("Password is required.");
+        return false;
+    }
+
+    if (password.length < 6) {
+        $("#passwordError").text("Password must contain at least 6 characters.");
+        return false;
+    }
+
+    $("#passwordError").text("");
+    return true;
+}
+
+function validateConfirmPassword() {
+    let password = $("#password").val();
+    let confirmPassword = $("#confirmPassword").val();
+
+    if (confirmPassword === "") {
+        $("#confirmPasswordError").text("Please confirm your password.");
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        $("#confirmPasswordError").text("Passwords do not match.");
+        return false;
+    }
+
+    $("#confirmPasswordError").text("");
+    return true;
+}
+
+$("#name").on("input blur", function () {
+    validateName();
+});
+
+$("#email").on("input blur", function () {
+    validateEmail();
+});
+
+$("#message").on("input blur", function () {
+    validateMessage();
+});
+
+$("#password").on("input blur", function () {
+    validatePassword();
+});
+
+$("#confirmPassword").on("input blur", function () {
+    validateConfirmPassword();
+});
+
+$("#registrationForm").on("submit", function (e) {
+
+    e.preventDefault();
+
+    let validName = validateName();
+    let validEmail = validateEmail();
+    let validMessage = validateMessage();
+    let validPassword = validatePassword();
+    let validConfirmPassword = validateConfirmPassword();
+
+    if (
+        validName &&
+        validEmail &&
+        validMessage &&
+        validPassword &&
+        validConfirmPassword
+    ) {
+        $("#formSuccess").text("Registration successful!");
+
+        $("#registrationForm")[0].reset();
+
+        $("#passwordStrength").text("");
+    } else {
         $("#formSuccess").text("");
-
-        if (name === "") {
-            $("#nameError").text("Name is required.");
-            valid = false;
-        }
-
-        if (!emailRegex.test(email)) {
-            $("#emailError").text("Enter a valid email address.");
-            valid = false;
-        }
-
-        if (message === "") {
-            $("#messageError").text("Message is required.");
-            valid = false;
-        }
-
-        if (password.length < 6) {
-            $("#passwordError").text("Password must contain at least 6 characters.");
-            valid = false;
-        }
-
-        if (password !== confirmPassword) {
-            $("#confirmPasswordError").text("Passwords do not match.");
-            valid = false;
-        }
-
-        if (valid) {
-            $("#formSuccess").text("Registration successful!");
-            $("#registrationForm")[0].reset();
-            $("#passwordStrength").text("");
-        }
-    });
+    }
+});
 
 
     $("#password").on("input", function () {
