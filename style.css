@@ -495,6 +495,93 @@ body:has(.lifestyle-page) {
 .dark-theme .section-heading h2 {
     color: #f8eeee;
 }
+.error-message {
+    color: #8b3f3f;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.success-message {
+    color: #557755;
+    font-size: 15px;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+#passwordStrength {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#themeToggle {
+    cursor: pointer;
+    border: 1px solid #6b4a4a;
+    background: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+}
+
+body.dark-mode {
+    background-color: #2b1d1d;
+    color: #f8eeee;
+}
+
+body.dark-mode .main-nav {
+    background-color: #2b1d1d;
+}
+
+body.dark-mode .main-nav a {
+    color: #f8eeee;
+}
+
+body.dark-mode .main-nav a.active {
+    background-color: #6b3d3d;
+    color: white;
+}
+
+body.dark-mode .home-hero,
+body.dark-mode .page-hero {
+    background-color: #3a2929;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode li {
+    color: #f8eeee;
+}
+
+body.dark-mode .emma-card {
+    background-color: #3a2929;
+    border-color: #6b4a4a;
+}
+
+body.dark-mode .emma-card-content {
+    background-color: #3a2929;
+}
+
+body.dark-mode .emma-tag {
+    background-color: #6b3d3d;
+    color: white;
+}
+
+body.dark-mode .form-control {
+    background-color: #4a3535;
+    color: white;
+    border-color: #765555;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #d8c8c8;
+}
+
+body.dark-mode .site-footer {
+    background-color: #1f1515;
+}
 
 .dark-theme .theme-btn {
     color: #f8eeee;
