@@ -1,4 +1,23 @@
 $(document).ready(function () {
+    let savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    $("body").addClass("dark-theme");
+    $("#themeToggle").text("☀️");
+}
+
+$("#themeToggle").on("click", function () {
+
+    $("body").toggleClass("dark-theme");
+
+    if ($("body").hasClass("dark-theme")) {
+        localStorage.setItem("theme", "dark");
+        $(this).text("☀️");
+    } else {
+        localStorage.setItem("theme", "light");
+        $(this).text("🌙");
+    }
+});
 
     $("#registrationForm").on("submit", function (e) {
 
