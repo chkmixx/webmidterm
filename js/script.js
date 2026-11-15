@@ -1,25 +1,54 @@
 $(document).ready(function () {
 
+    if (localStorage.getItem("theme") === "dark") {
+        $("body").addClass("dark-mode");
+        $("#themeToggle").text("☀️");
+    } else {
+        $("#themeToggle").text("🌙");
+    }
+
+
+    $("#themeToggle").on("click", function (e) {
+
+        e.preventDefault();
+
+        $("body").toggleClass("dark-mode");
+
+        if ($("body").hasClass("dark-mode")) {
+            localStorage.setItem("theme", "dark");
+            $(this).text("☀️");
+        } else {
+            localStorage.setItem("theme", "light");
+            $(this).text("🌙");
+        }
+    });
+
+
     $("#registrationForm").on("submit", function (e) {
         e.preventDefault();
         validateForm();
     });
 
+
     $("#name").on("input", function () {
         validateName();
     });
+
 
     $("#email").on("input", function () {
         validateEmail();
     });
 
+
     $("#message").on("input", function () {
         validateMessage();
     });
 
+
     $("#password").on("input", function () {
         validatePassword();
     });
+
 
     $("#confirmPassword").on("input", function () {
         validateConfirmPassword();
@@ -27,6 +56,7 @@ $(document).ready(function () {
 
 
     function validateName() {
+
         let name = $("#name").val().trim();
 
         if (name === "") {
@@ -40,8 +70,11 @@ $(document).ready(function () {
 
 
     function validateEmail() {
+
         let email = $("#email").val().trim();
-        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        let emailRegex =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (email === "") {
             $("#emailError").text("Email is required.");
@@ -59,6 +92,7 @@ $(document).ready(function () {
 
 
     function validateMessage() {
+
         let message = $("#message").val().trim();
 
         if (message === "") {
@@ -72,23 +106,37 @@ $(document).ready(function () {
 
 
     function validatePassword() {
+
         let password = $("#password").val();
+
         let text = "";
 
         if (password.length === 0) {
+
             $("#passwordStrength").text("");
             $("#passwordError").text("Password is required.");
+
             return false;
         }
 
         if (password.length < 6) {
+
             text = "Weak password";
-            $("#passwordError").text("Password must contain at least 6 characters.");
+
+            $("#passwordError").text(
+                "Password must contain at least 6 characters."
+            );
+
         } else if (password.length < 10) {
+
             text = "Medium password";
+
             $("#passwordError").text("");
+
         } else {
+
             text = "Strong password";
+
             $("#passwordError").text("");
         }
 
@@ -103,20 +151,32 @@ $(document).ready(function () {
 
 
     function validateConfirmPassword() {
+
         let password = $("#password").val();
-        let confirmPassword = $("#confirmPassword").val();
+
+        let confirmPassword =
+            $("#confirmPassword").val();
 
         if (confirmPassword === "") {
-            $("#confirmPasswordError").text("Please confirm your password.");
+
+            $("#confirmPasswordError").text(
+                "Please confirm your password."
+            );
+
             return false;
         }
 
         if (password !== confirmPassword) {
-            $("#confirmPasswordError").text("Passwords do not match.");
+
+            $("#confirmPasswordError").text(
+                "Passwords do not match."
+            );
+
             return false;
         }
 
         $("#confirmPasswordError").text("");
+
         return true;
     }
 
@@ -127,7 +187,8 @@ $(document).ready(function () {
         let emailValid = validateEmail();
         let messageValid = validateMessage();
         let passwordValid = validatePassword();
-        let confirmPasswordValid = validateConfirmPassword();
+        let confirmPasswordValid =
+            validateConfirmPassword();
 
         if (
             nameValid &&
@@ -136,12 +197,17 @@ $(document).ready(function () {
             passwordValid &&
             confirmPasswordValid
         ) {
-            $("#formSuccess").text("Registration successful!");
+
+            $("#formSuccess").text(
+                "Registration successful!"
+            );
 
             $("#registrationForm")[0].reset();
 
             $("#passwordStrength").text("");
+
         } else {
+
             $("#formSuccess").text("");
         }
     }
@@ -173,13 +239,21 @@ $(document).ready(function () {
                     <td>${book.title}</td>
                     <td>${book.author}</td>
                     <td>
-                        <button class="btn btn-sm btn-dark edit-book" data-id="${book.id}">
+
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-dark edit-book"
+                            data-id="${book.id}">
                             Edit
                         </button>
 
-                        <button class="btn btn-sm btn-danger delete-book" data-id="${book.id}">
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-danger delete-book"
+                            data-id="${book.id}">
                             Delete
                         </button>
+
                     </td>
                 </tr>
             `;
@@ -196,16 +270,22 @@ $(document).ready(function () {
 
         e.preventDefault();
 
-        let title = $("#bookTitle").val().trim();
-        let author = $("#bookAuthor").val().trim();
+        let title =
+            $("#bookTitle").val().trim();
+
+        let author =
+            $("#bookAuthor").val().trim();
 
         if (title === "" || author === "") {
             return;
         }
 
-        let newId = books.length > 0
-            ? Math.max(...books.map(book => book.id)) + 1
-            : 1;
+        let newId =
+            books.length > 0
+                ? Math.max(
+                    ...books.map(book => book.id)
+                ) + 1
+                : 1;
 
         books.push({
             id: newId,
@@ -219,68 +299,95 @@ $(document).ready(function () {
     });
 
 
-  $(document).on("click", ".delete-book", function (e) {
+    $(document).on(
+        "click",
+        ".delete-book",
+        function (e) {
 
-    e.preventDefault();
+            e.preventDefault();
 
-    let id = Number($(this).data("id"));
+            let id =
+                Number($(this).data("id"));
 
-    books = books.filter(function (book) {
-        return book.id !== id;
-    });
+            books = books.filter(function (book) {
 
-    displayBooks();
-});
+                return book.id !== id;
 
+            });
 
-    $(document).on("click", ".edit-book", function () {
-
-        let id = Number($(this).data("id"));
-
-        let book = books.find(function (book) {
-            return book.id === id;
-        });
-
-        if (!book) {
-            return;
+            displayBooks();
         }
+    );
 
-        let newTitle = prompt(
-            "Enter new book title:",
-            book.title
-        );
 
-        if (newTitle === null) {
-            return;
+    $(document).on(
+        "click",
+        ".edit-book",
+        function (e) {
+
+            e.preventDefault();
+
+            let id =
+                Number($(this).data("id"));
+
+            let book =
+                books.find(function (book) {
+
+                    return book.id === id;
+
+                });
+
+            if (!book) {
+                return;
+            }
+
+            let newTitle =
+                prompt(
+                    "Enter new book title:",
+                    book.title
+                );
+
+            if (newTitle === null) {
+                return;
+            }
+
+            let newAuthor =
+                prompt(
+                    "Enter new author:",
+                    book.author
+                );
+
+            if (newAuthor === null) {
+                return;
+            }
+
+            if (
+                newTitle.trim() === "" ||
+                newAuthor.trim() === ""
+            ) {
+                return;
+            }
+
+            book.title =
+                newTitle.trim();
+
+            book.author =
+                newAuthor.trim();
+
+            displayBooks();
         }
-
-        let newAuthor = prompt(
-            "Enter new author:",
-            book.author
-        );
-
-        if (newAuthor === null) {
-            return;
-        }
-
-        if (newTitle.trim() === "" || newAuthor.trim() === "") {
-            return;
-        }
-
-        book.title = newTitle.trim();
-        book.author = newAuthor.trim();
-
-        displayBooks();
-    });
+    );
 
 
     $("#searchInput").on("input", function () {
 
-        let value = $(this).val().toLowerCase();
+        let value =
+            $(this).val().toLowerCase();
 
         $(".filter-item").each(function () {
 
-            let text = $(this).text().toLowerCase();
+            let text =
+                $(this).text().toLowerCase();
 
             if (text.includes(value)) {
                 $(this).show();
@@ -293,14 +400,18 @@ $(document).ready(function () {
 
     $(".category-btn").on("click", function () {
 
-        let category = $(this).data("category");
+        let category =
+            $(this).data("category");
 
-        $(".category-btn").removeClass("active");
+        $(".category-btn")
+            .removeClass("active");
+
         $(this).addClass("active");
 
         $(".filter-item").each(function () {
 
-            let itemCategory = $(this).data("category");
+            let itemCategory =
+                $(this).data("category");
 
             if (
                 category === "all" ||
@@ -319,9 +430,11 @@ $(document).ready(function () {
 
     $("#gallery img").on("click", function () {
 
-        currentImage = $("#gallery img").index(this);
+        currentImage =
+            $("#gallery img").index(this);
 
-        let image = $(this).attr("src");
+        let image =
+            $(this).attr("src");
 
         $("#lightboxImage")
             .attr("src", image)
@@ -338,6 +451,7 @@ $(document).ready(function () {
     $("#closeLightbox").on("click", function () {
 
         $("#lightbox").fadeOut(300);
+
     });
 
 
@@ -345,20 +459,29 @@ $(document).ready(function () {
 
         e.stopPropagation();
 
-        let images = $("#gallery img");
+        let images =
+            $("#gallery img");
 
         currentImage--;
 
         if (currentImage < 0) {
-            currentImage = images.length - 1;
+            currentImage =
+                images.length - 1;
         }
 
-        $("#lightboxImage").fadeOut(200, function () {
+        $("#lightboxImage")
+            .fadeOut(200, function () {
 
-            $(this)
-                .attr("src", images.eq(currentImage).attr("src"))
-                .fadeIn(300);
-        });
+                $(this)
+                    .attr(
+                        "src",
+                        images
+                            .eq(currentImage)
+                            .attr("src")
+                    )
+                    .fadeIn(300);
+
+            });
     });
 
 
@@ -366,20 +489,31 @@ $(document).ready(function () {
 
         e.stopPropagation();
 
-        let images = $("#gallery img");
+        let images =
+            $("#gallery img");
 
         currentImage++;
 
-        if (currentImage >= images.length) {
+        if (
+            currentImage >=
+            images.length
+        ) {
             currentImage = 0;
         }
 
-        $("#lightboxImage").fadeOut(200, function () {
+        $("#lightboxImage")
+            .fadeOut(200, function () {
 
-            $(this)
-                .attr("src", images.eq(currentImage).attr("src"))
-                .fadeIn(300);
-        });
+                $(this)
+                    .attr(
+                        "src",
+                        images
+                            .eq(currentImage)
+                            .attr("src")
+                    )
+                    .fadeIn(300);
+
+            });
     });
 
 
@@ -391,31 +525,27 @@ $(document).ready(function () {
     });
 
 
-    $("#lightboxImage").on("mouseenter", function () {
+    $("#lightboxImage").on(
+        "mouseenter",
+        function () {
 
-        $(this).animate({
-            opacity: 0.85
-        }, 150);
-    });
+            $(this).animate({
+                opacity: 0.85
+            }, 150);
 
-
-    $("#lightboxImage").on("mouseleave", function () {
-
-        $(this).animate({
-            opacity: 1
-        }, 150);
-    });
-
-
-    $("#themeToggle").on("click", function () {
-
-        $("body").toggleClass("dark-mode");
-
-        if ($("body").hasClass("dark-mode")) {
-            $(this).text("☀️");
-        } else {
-            $(this).text("🌙");
         }
-    });
+    );
+
+
+    $("#lightboxImage").on(
+        "mouseleave",
+        function () {
+
+            $(this).animate({
+                opacity: 1
+            }, 150);
+
+        }
+    );
 
 });
