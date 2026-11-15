@@ -545,5 +545,49 @@ $(document).ready(function () {
         }
 
     });
+        let currentImageIndex = 0;
+
+    const galleryImages = $(".gallery-image");
+
+    $(".gallery-image").on("click", function () {
+        currentImageIndex = galleryImages.index(this);
+
+        $("#lightboxImage").attr("src", $(this).attr("src"));
+        $("#lightbox").fadeIn(300);
+    });
+
+    $("#closeLightbox").on("click", function () {
+        $("#lightbox").fadeOut(300);
+    });
+
+    $("#prevImage").on("click", function () {
+        currentImageIndex--;
+
+        if (currentImageIndex < 0) {
+            currentImageIndex = galleryImages.length - 1;
+        }
+
+        $("#lightboxImage")
+            .fadeOut(150, function () {
+                $(this)
+                    .attr("src", galleryImages.eq(currentImageIndex).attr("src"))
+                    .fadeIn(150);
+            });
+    });
+
+    $("#nextImage").on("click", function () {
+        currentImageIndex++;
+
+        if (currentImageIndex >= galleryImages.length) {
+            currentImageIndex = 0;
+        }
+
+        $("#lightboxImage")
+            .fadeOut(150, function () {
+                $(this)
+                    .attr("src", galleryImages.eq(currentImageIndex).attr("src"))
+                    .fadeIn(150);
+            });
+    });
 
 });
