@@ -545,7 +545,7 @@ $(document).ready(function () {
         }
 
     });
-       let currentImageIndex = 0;
+      let currentImageIndex = 0;
 
 const galleryImages = $(".gallery-image");
 
@@ -553,13 +553,15 @@ $(".gallery-image").on("click", function () {
     currentImageIndex = galleryImages.index(this);
 
     $("#lightboxImage").attr("src", $(this).attr("src"));
-    $("#lightbox").addClass("show").hide().fadeIn(300);
+
+    $("#lightbox")
+        .css("display", "flex")
+        .hide()
+        .fadeIn(300);
 });
 
 $("#closeLightbox").on("click", function () {
-    $("#lightbox").fadeOut(300, function () {
-        $(this).removeClass("show");
-    });
+    $("#lightbox").fadeOut(300);
 });
 
 $("#prevImage").on("click", function () {
