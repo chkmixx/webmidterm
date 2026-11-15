@@ -12,6 +12,7 @@ body {
     background: var(--cream);
     color: var(--brown);
     font-family: "Poppins", sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar,
@@ -250,8 +251,6 @@ body {
     opacity: 0.85;
 }
 
-/* FOOD AND LIFESTYLE */
-
 body:has(.food-page),
 body:has(.lifestyle-page) {
     background: var(--cream);
@@ -301,64 +300,7 @@ body:has(.lifestyle-page) {
     border-color: #693d3d;
 }
 
-@media (max-width: 992px) {
-    .home-hero h1 {
-        font-size: 65px;
-    }
-
-    .page-hero h1 {
-        font-size: 58px;
-    }
-
-    .navbar,
-    .main-nav,
-    .site-header {
-        padding-left: 4%;
-        padding-right: 4%;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar,
-    .main-nav,
-    .site-header {
-        flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-    }
-
-    .navbar .nav-links,
-    .main-nav ul,
-    .site-header .nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px;
-    }
-
-    .home-hero {
-        padding: 55px 0;
-    }
-
-    .page-hero {
-        padding: 60px 0;
-    }
-
-    .home-hero h1 {
-        font-size: 48px;
-    }
-
-    .page-hero h1 {
-        font-size: 44px;
-    }
-
-    .content-section {
-        padding-top: 50px;
-    }
-
-    .section-heading h2 {
-        font-size: 38px;
-    }
-    .error-message {
+.error-message {
     color: #a94442;
     font-size: 14px;
     margin-top: 6px;
@@ -368,6 +310,7 @@ body:has(.lifestyle-page) {
     color: #5f7f5f;
     font-size: 15px;
     margin-top: 15px;
+    font-weight: 500;
 }
 
 #passwordStrength {
@@ -388,10 +331,6 @@ body:has(.lifestyle-page) {
     margin-top: 20px;
 }
 
-    .emma-image {
-        height: 250px;
-    }
-}
 #lightbox {
     display: none;
     position: fixed;
@@ -452,76 +391,21 @@ body:has(.lifestyle-page) {
 .gallery-image:hover {
     transform: scale(1.03);
 }
-.theme-btn {
-    border: 1px solid #5a2d2d;
-    background: transparent;
-    color: #5a2d2d;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.dark-theme {
-    background: #241919;
-    color: #f8eeee;
-}
-
-.dark-theme .main-nav {
-    background: #241919;
-}
-
-.dark-theme .main-nav a,
-.dark-theme .logo {
-    color: #f8eeee;
-}
-
-.dark-theme .content-section,
-.dark-theme .page-hero {
-    background: #241919;
-}
-
-.dark-theme .emma-card {
-    background: #332323;
-    color: #f8eeee;
-}
-
-.dark-theme .emma-card h3,
-.dark-theme .emma-card p {
-    color: #f8eeee;
-}
-
-.dark-theme .section-heading h2 {
-    color: #f8eeee;
-}
-.error-message {
-    color: #8b3f3f;
-    font-size: 14px;
-    margin-top: 6px;
-}
-
-.success-message {
-    color: #557755;
-    font-size: 15px;
-    margin-top: 15px;
-    font-weight: 500;
-}
-
-#passwordStrength {
-    margin-top: 6px;
-    font-size: 14px;
-    font-weight: 600;
-}
 
 #themeToggle {
     cursor: pointer;
     border: 1px solid #6b4a4a;
     background: white;
+    color: #6b4a4a;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     font-size: 20px;
+    transition: 0.3s;
+}
+
+#themeToggle:hover {
+    transform: scale(1.05);
 }
 
 body.dark-mode {
@@ -529,29 +413,52 @@ body.dark-mode {
     color: #f8eeee;
 }
 
-body.dark-mode .main-nav {
+body.dark-mode .navbar,
+body.dark-mode .main-nav,
+body.dark-mode .site-header {
     background-color: #2b1d1d;
+    border-color: #4d3636;
 }
 
-body.dark-mode .main-nav a {
+body.dark-mode .navbar .logo,
+body.dark-mode .main-nav .logo,
+body.dark-mode .site-header .logo {
     color: #f8eeee;
 }
 
-body.dark-mode .main-nav a.active {
+body.dark-mode .navbar a,
+body.dark-mode .main-nav a,
+body.dark-mode .site-header a {
+    color: #f8eeee;
+}
+
+body.dark-mode .navbar a:hover,
+body.dark-mode .main-nav a:hover,
+body.dark-mode .site-header a:hover {
+    background-color: #4a3030;
+}
+
+body.dark-mode .navbar a.active,
+body.dark-mode .main-nav a.active,
+body.dark-mode .site-header a.active {
     background-color: #6b3d3d;
     color: white;
 }
 
 body.dark-mode .home-hero,
 body.dark-mode .page-hero {
-    background-color: #3a2929;
+    background: linear-gradient(90deg, #352424, #443030);
 }
 
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode p,
-body.dark-mode li {
+body.dark-mode .hero-small,
+body.dark-mode .home-hero h1,
+body.dark-mode .page-hero h1,
+body.dark-mode .home-description,
+body.dark-mode .hero-description,
+body.dark-mode .section-heading h2,
+body.dark-mode .emma-card h3,
+body.dark-mode .emma-card p,
+body.dark-mode .emma-card li {
     color: #f8eeee;
 }
 
@@ -579,11 +486,97 @@ body.dark-mode .form-control::placeholder {
     color: #d8c8c8;
 }
 
+body.dark-mode .table {
+    color: #f8eeee;
+}
+
+body.dark-mode .table-bordered {
+    border-color: #765555;
+}
+
+body.dark-mode .table > :not(caption) > * > * {
+    background-color: #3a2929;
+    color: #f8eeee;
+    border-color: #765555;
+}
+
+body.dark-mode #themeToggle {
+    background-color: #3a2929;
+    color: #f8eeee;
+    border-color: #f8eeee;
+}
+
 body.dark-mode .site-footer {
     background-color: #1f1515;
 }
 
-.dark-theme .theme-btn {
-    color: #f8eeee;
-    border-color: #f8eeee;
+body.dark-mode .error-message {
+    color: #ffb0b0;
+}
+
+body.dark-mode .success-message {
+    color: #b8d8b8;
+}
+
+@media (max-width: 992px) {
+    .home-hero h1 {
+        font-size: 65px;
+    }
+
+    .page-hero h1 {
+        font-size: 58px;
+    }
+
+    .navbar,
+    .main-nav,
+    .site-header {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar,
+    .main-nav,
+    .site-header {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .navbar .nav-links,
+    .main-nav ul,
+    .site-header .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .home-hero {
+        padding: 55px 0;
+    }
+
+    .page-hero {
+        padding: 60px 0;
+    }
+
+    .home-hero h1 {
+        font-size: 48px;
+    }
+
+    .page-hero h1 {
+        font-size: 44px;
+    }
+
+    .content-section {
+        padding-top: 50px;
+    }
+
+    .section-heading h2 {
+        font-size: 38px;
+    }
+
+    .emma-image {
+        height: 250px;
+    }
 }
