@@ -14,12 +14,9 @@ Personal blog about Emma Watson.
 - Tomiris
 
 ## Project Description
+Our project is a personal blog about Emma Watson. She is a who borned France in 1990, and a English actress, model, and activist. The website includes information about her lifestyle, food, travel, technology and personal life. The website has connected all 6 pages, and for this we used HTML, CSS, JavaScript, jQuery and Bootsrap. Also our webside is responsive and works on different screen sizes.
 
-This is a multi-page personal blog about Emma Watson. The website includes information about her lifestyle, food, travel, technology and personal life. The website is responsive and works on different screen sizes.
-
-The project also includes interactive JavaScript and jQuery functionality for user interaction and dynamic content.
-
-## Pages
+## Pages 6 
 
 - Home page
 - About page
@@ -45,23 +42,32 @@ The project also includes interactive JavaScript and jQuery functionality for us
 - Password strength indicator
 - Password confirmation
 - Real-time form feedback
-- Dynamic search
-- Category filtering
+- Search
+- Category filtering (The about page has a book table, users can:
+- Create book (entering book's name and author's name)
+- Read the book
+- Update the book
+- Delete the book 
 - CRUD operations
-- Create, Read, Update and Delete functionality
-- Delete confirmation
-- Dynamic books table
 - Bootstrap image gallery
 - Clickable image lightbox
 - Previous and Next image navigation
 - jQuery fadeIn() effect
 - jQuery fadeOut() effect
-- jQuery animate() effect
+- we added a theme toggle, the selected theme is saved in lacoalStorage, so it stays after refreching the page. 
 - Bootstrap grid
 - Flexbox and CSS Grid
 - Hover and focus effects
-- Mobile and tablet layouts
+- Mobile and tablet layouts 
 - Footer with contact and social links
+- Sign -in form: also we added sign- in form here JavaScript checks the form and saves the login state in localStorage.
+- API: We used a public API in our project.
+We used fetch() to get data from the API. The data is received in JSON format and shown on the page. Users can search for books using the API.
+For example, we can search for Little Women and get book results.
+- FAQ
+We added an FAQ section to the Lifestyle page. Users can click a question to open or close the answer. We used jQuery slideToggle() for the animation. The FAQ also has + and − indicators.
+
+
 
 ## Technologies
 
