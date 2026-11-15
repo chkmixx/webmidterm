@@ -219,21 +219,18 @@ $(document).ready(function () {
     });
 
 
-    $(document).on("click", ".delete-book", function () {
+  $(document).on("click", ".delete-book", function (e) {
 
-        let id = Number($(this).data("id"));
+    e.preventDefault();
 
-        let confirmed = confirm("Are you sure you want to delete this book?");
+    let id = Number($(this).data("id"));
 
-        if (confirmed) {
-
-            books = books.filter(function (book) {
-                return book.id !== id;
-            });
-
-            displayBooks();
-        }
+    books = books.filter(function (book) {
+        return book.id !== id;
     });
+
+    displayBooks();
+});
 
 
     $(document).on("click", ".edit-book", function () {
