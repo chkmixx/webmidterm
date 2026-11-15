@@ -344,6 +344,10 @@ body:has(.lifestyle-page) {
     justify-content: center;
 }
 
+#lightbox.show {
+    display: flex;
+}
+
 .lightbox-content {
     max-width: 80%;
     max-height: 80%;
