@@ -32,7 +32,7 @@ $(document).ready(function () {
 
 
     /* =========================
-       REGISTRATION VALIDATION
+       REGISTRATION
     ========================= */
 
     $("#registrationForm").on("submit", function (e) {
@@ -98,7 +98,7 @@ $(document).ready(function () {
             localStorage.setItem("registeredEmail", email);
             localStorage.setItem("registeredPassword", password);
 
-            $("#registrationForm")[0].reset();
+            this.reset();
 
             alert("Registration successful!");
         }
@@ -106,7 +106,7 @@ $(document).ready(function () {
 
 
     /* =========================
-       REAL-TIME PASSWORD CHECK
+       PASSWORD STRENGTH
     ========================= */
 
     $("#password").on("input", function () {
@@ -115,7 +115,7 @@ $(document).ready(function () {
         let strength = "";
         let color = "";
 
-        if (password.length === 0) {
+        if (password === "") {
             strength = "";
         } else if (password.length < 6) {
             strength = "Weak password";
@@ -140,7 +140,7 @@ $(document).ready(function () {
 
 
     /* =========================
-       REAL-TIME EMAIL CHECK
+       EMAIL REAL-TIME VALIDATION
     ========================= */
 
     $("#email").on("input", function () {
@@ -195,18 +195,29 @@ $(document).ready(function () {
         const email = $("#signInEmail").val().trim();
         const password = $("#signInPassword").val();
 
-        const savedEmail = localStorage.getItem("registeredEmail");
-        const savedPassword = localStorage.getItem("registeredPassword");
-        const savedName = localStorage.getItem("registeredName");
+        const savedEmail =
+            localStorage.getItem("registeredEmail");
+
+        const savedPassword =
+            localStorage.getItem("registeredPassword");
+
+        const savedName =
+            localStorage.getItem("registeredName");
 
         if (email === "" || password === "") {
             alert("Please fill in all fields.");
             return;
         }
 
-        if (email === savedEmail && password === savedPassword) {
+        if (
+            email === savedEmail &&
+            password === savedPassword
+        ) {
             localStorage.setItem("isLoggedIn", "true");
-            localStorage.setItem("loggedInName", savedName || "User");
+            localStorage.setItem(
+                "loggedInName",
+                savedName || "User"
+            );
 
             alert("Sign in successful!");
 
@@ -229,7 +240,10 @@ $(document).ready(function () {
             const name =
                 localStorage.getItem("loggedInName") || "User";
 
-            $("#loginStatus").text("Welcome, " + name);
+            $("#loginStatus").text(
+                "Welcome, " + name
+            );
+
             $("#signOutBtn").show();
         } else {
             $("#loginStatus").text("");
@@ -258,84 +272,99 @@ $(document).ready(function () {
        TECH SEARCH
     ========================= */
 
-    function filterPosts() {
+    function filterTechPosts() {
+
         const searchValue =
-            $("#postSearch").val().toLowerCase().trim();
+            $("#searchInput")
+                .val()
+                .toLowerCase()
+                .trim();
 
-        $(".post-card").each(function () {
-            const cardText =
-                $(this).text().toLowerCase();
+        const activeCategory =
+            $(".category-btn.active")
+                .data("category");
 
-            if (cardText.includes(searchValue)) {
-                $(this).show();
+        $(".filter-item").each(function () {
+
+            const card =
+                $(this);
+
+            const text =
+                card.text().toLowerCase();
+
+            const category =
+                String(
+                    card.data("category")
+                ).toLowerCase();
+
+            const matchesSearch =
+                text.includes(searchValue);
+
+            const matchesCategory =
+                activeCategory === "all" ||
+                category ===
+                String(activeCategory).toLowerCase();
+
+            if (
+                matchesSearch &&
+                matchesCategory
+            ) {
+                card.show();
             } else {
-                $(this).hide();
+                card.hide();
             }
         });
     }
 
-    $("#postSearch").on("input keyup", function () {
-        filterPosts();
-    });
+
+    $("#searchInput").on(
+        "input keyup",
+        function () {
+            filterTechPosts();
+        }
+    );
 
 
     /* =========================
        CATEGORY FILTER
     ========================= */
 
-    $(".category-btn").on("click", function () {
-        const category =
-            $(this).data("category");
+    $(".category-btn").on(
+        "click",
+        function () {
 
-        $(".category-btn").removeClass("active");
-        $(this).addClass("active");
+            $(".category-btn")
+                .removeClass("active");
 
-        const searchValue =
-            $("#postSearch").val().toLowerCase().trim();
+            $(this)
+                .addClass("active");
 
-        $(".post-card").each(function () {
-            const card = $(this);
-            const cardText = card.text().toLowerCase();
-            const cardCategory =
-                String(card.data("category") || "").toLowerCase();
-
-            const matchesSearch =
-                cardText.includes(searchValue);
-
-            const matchesCategory =
-                category === "all" ||
-                category === "" ||
-                cardCategory === String(category).toLowerCase();
-
-            if (matchesSearch && matchesCategory) {
-                card.show();
-            } else {
-                card.hide();
-            }
-        });
-    });
+            filterTechPosts();
+        }
+    );
 
 
     /* =========================
        CRUD
     ========================= */
 
-    let books = JSON.parse(
-        localStorage.getItem("books")
-    ) || [
-        {
-            id: 1,
-            title: "Little Women",
-            author: "Louisa May Alcott",
-            year: 1868
-        },
-        {
-            id: 2,
-            title: "Harry Potter",
-            author: "J.K. Rowling",
-            year: 1997
-        }
-    ];
+    let books =
+        JSON.parse(
+            localStorage.getItem("books")
+        ) || [
+            {
+                id: 1,
+                title: "Little Women",
+                author: "Louisa May Alcott",
+                year: 1868
+            },
+            {
+                id: 2,
+                title: "Harry Potter",
+                author: "J.K. Rowling",
+                year: 1997
+            }
+        ];
 
 
     function saveBooks() {
@@ -347,6 +376,7 @@ $(document).ready(function () {
 
 
     function displayBooks() {
+
         const tableBody =
             $("#bookTableBody");
 
@@ -357,12 +387,14 @@ $(document).ready(function () {
         tableBody.empty();
 
         books.forEach(function (book) {
+
             tableBody.append(`
                 <tr>
                     <td>${book.id}</td>
                     <td>${book.title}</td>
                     <td>${book.author}</td>
                     <td>${book.year}</td>
+
                     <td>
                         <button
                             class="btn btn-sm btn-warning edit-book"
@@ -385,54 +417,74 @@ $(document).ready(function () {
 
 
     /* =========================
-       CREATE BOOK
+       CREATE
     ========================= */
 
-    $("#bookForm").on("submit", function (e) {
-        e.preventDefault();
+    $("#bookForm").on(
+        "submit",
+        function (e) {
 
-        const title =
-            $("#bookTitle").val().trim();
+            e.preventDefault();
 
-        const author =
-            $("#bookAuthor").val().trim();
+            const title =
+                $("#bookTitle")
+                    .val()
+                    .trim();
 
-        const year =
-            $("#bookYear").val().trim();
+            const author =
+                $("#bookAuthor")
+                    .val()
+                    .trim();
 
-        if (
-            title === "" ||
-            author === "" ||
-            year === ""
-        ) {
-            alert("Please fill in all fields.");
-            return;
+            const year =
+                $("#bookYear")
+                    .val()
+                    .trim();
+
+            if (
+                title === "" ||
+                author === "" ||
+                year === ""
+            ) {
+                alert(
+                    "Please fill in all fields."
+                );
+                return;
+            }
+
+            const newBook = {
+
+                id:
+                    books.length > 0
+                        ? Math.max(
+                            ...books.map(
+                                book =>
+                                    book.id
+                            )
+                        ) + 1
+                        : 1,
+
+                title: title,
+                author: author,
+                year: Number(year)
+            };
+
+            books.push(newBook);
+
+            saveBooks();
+            displayBooks();
+
+            this.reset();
+
+            alert(
+                "Book added successfully!"
+            );
         }
-
-        const newBook = {
-            id:
-                books.length > 0
-                    ? Math.max(...books.map(book => book.id)) + 1
-                    : 1,
-
-            title: title,
-            author: author,
-            year: Number(year)
-        };
-
-        books.push(newBook);
-
-        saveBooks();
-        displayBooks();
-
-        this.reset();
-
-        alert("Book added successfully!");
-    });
+    );
 
 
     /* =========================
-       UPDATE BOOK
+       UPDATE
     ========================= */
 
     $(document).on(
@@ -441,33 +493,46 @@ $(document).ready(function () {
         function () {
 
             const id =
-                Number($(this).data("id"));
+                Number(
+                    $(this).data("id")
+                );
 
             const book =
-                books.find(function (item) {
-                    return item.id === id;
-                });
+                books.find(
+                    function (item) {
+                        return item.id === id;
+                    }
+                );
 
             if (!book) {
                 return;
             }
 
             const newTitle =
-                prompt("Enter book title:", book.title);
+                prompt(
+                    "Enter book title:",
+                    book.title
+                );
 
             if (newTitle === null) {
                 return;
             }
 
             const newAuthor =
-                prompt("Enter author:", book.author);
+                prompt(
+                    "Enter author:",
+                    book.author
+                );
 
             if (newAuthor === null) {
                 return;
             }
 
             const newYear =
-                prompt("Enter year:", book.year);
+                prompt(
+                    "Enter year:",
+                    book.year
+                );
 
             if (newYear === null) {
                 return;
@@ -489,7 +554,7 @@ $(document).ready(function () {
 
 
     /* =========================
-       DELETE BOOK
+       DELETE
     ========================= */
 
     $(document).on(
@@ -498,21 +563,24 @@ $(document).ready(function () {
         function () {
 
             const id =
-                Number($(this).data("id"));
-
-            const confirmed =
-                confirm(
-                    "Are you sure you want to delete this book?"
+                Number(
+                    $(this).data("id")
                 );
 
-            if (!confirmed) {
+            if (
+                !confirm(
+                    "Are you sure you want to delete this book?"
+                )
+            ) {
                 return;
             }
 
             books =
-                books.filter(function (book) {
-                    return book.id !== id;
-                });
+                books.filter(
+                    function (book) {
+                        return book.id !== id;
+                    }
+                );
 
             saveBooks();
             displayBooks();
@@ -521,119 +589,142 @@ $(document).ready(function () {
 
 
     /* =========================
-       API
+       OPEN LIBRARY API
     ========================= */
 
-    $("#apiSearch").on("input", function () {
+    $("#apiSearch").on(
+        "input",
+        function () {
 
-        const query =
-            $(this).val().trim();
+            const query =
+                $(this)
+                    .val()
+                    .trim();
 
-        if (query === "") {
-            $("#apiResults").empty();
-            $("#apiStatus").text("");
-            return;
-        }
-
-        $("#apiStatus").text("Loading...");
-
-        fetch(
-            "https://openlibrary.org/search.json?q=" +
-            encodeURIComponent(query)
-        )
-            .then(function (response) {
-
-                if (!response.ok) {
-                    throw new Error("API request failed");
-                }
-
-                return response.json();
-            })
-
-            .then(function (data) {
-
+            if (query === "") {
                 $("#apiResults").empty();
+                $("#apiStatus").text("");
+                return;
+            }
 
-                const books =
-                    data.docs.slice(0, 6);
+            $("#apiStatus")
+                .text("Loading...");
 
-                $("#apiStatus").text(
-                    "Found " +
-                    data.numFound +
-                    " books. Showing " +
-                    books.length +
-                    " results."
-                );
+            fetch(
+                "https://openlibrary.org/search.json?q=" +
+                encodeURIComponent(query)
+            )
+                .then(function (response) {
 
-                books.forEach(function (book) {
+                    if (!response.ok) {
+                        throw new Error(
+                            "API request failed"
+                        );
+                    }
 
-                    const title =
-                        book.title || "Unknown title";
+                    return response.json();
+                })
 
-                    const author =
-                        book.author_name
-                            ? book.author_name[0]
-                            : "Unknown author";
+                .then(function (data) {
 
-                    const year =
-                        book.first_publish_year
-                            || "Unknown";
+                    $("#apiResults")
+                        .empty();
 
-                    $("#apiResults").append(`
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100 shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        ${title}
-                                    </h5>
+                    const results =
+                        data.docs.slice(0, 6);
 
-                                    <p class="card-text">
-                                        Author: ${author}
-                                    </p>
+                    $("#apiStatus").text(
+                        "Found " +
+                        data.numFound +
+                        " books. Showing " +
+                        results.length +
+                        " results."
+                    );
 
-                                    <p class="card-text">
-                                        First published: ${year}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    `);
+                    results.forEach(
+                        function (book) {
+
+                            const title =
+                                book.title ||
+                                "Unknown title";
+
+                            const author =
+                                book.author_name
+                                    ? book.author_name[0]
+                                    : "Unknown author";
+
+                            const year =
+                                book.first_publish_year ||
+                                "Unknown";
+
+                            $("#apiResults")
+                                .append(`
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card h-100 shadow-sm">
+                                            <div class="card-body">
+
+                                                <h5 class="card-title">
+                                                    ${title}
+                                                </h5>
+
+                                                <p class="card-text">
+                                                    Author: ${author}
+                                                </p>
+
+                                                <p class="card-text">
+                                                    First published: ${year}
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                `);
+                        }
+                    );
+                })
+
+                .catch(function (error) {
+
+                    console.error(error);
+
+                    $("#apiStatus").text(
+                        "Sorry, something went wrong. Please try again."
+                    );
+
+                    $("#apiResults")
+                        .empty();
                 });
-            })
-
-            .catch(function (error) {
-
-                console.error(error);
-
-                $("#apiStatus").text(
-                    "Sorry, something went wrong. Please try again."
-                );
-
-                $("#apiResults").empty();
-            });
-    });
+        }
+    );
 
 
     /* =========================
        FAQ
     ========================= */
 
-    $(".faq-question").on("click", function () {
+    $(".faq-question").on(
+        "click",
+        function () {
 
-        const answer =
-            $(this).next(".faq-answer");
+            const answer =
+                $(this)
+                    .next(".faq-answer");
 
-        answer.slideToggle(300);
+            answer.slideToggle(300);
 
-        const indicator =
-            $(this).find(".faq-icon");
+            const icon =
+                $(this)
+                    .find(".faq-icon");
 
-        if (indicator.text() === "+") {
-            indicator.text("−");
-        } else {
-            indicator.text("+");
+            if (
+                icon.text() === "+"
+            ) {
+                icon.text("−");
+            } else {
+                icon.text("+");
+            }
         }
-    });
+    );
 
 
     /* =========================
@@ -660,7 +751,10 @@ $(document).ready(function () {
                 );
 
             $("#lightbox")
-                .css("display", "flex")
+                .css(
+                    "display",
+                    "flex"
+                )
                 .hide()
                 .fadeIn(300);
         }
@@ -691,19 +785,22 @@ $(document).ready(function () {
             }
 
             $("#lightboxImage")
-                .fadeOut(150, function () {
+                .fadeOut(
+                    150,
+                    function () {
 
-                    $(this)
-                        .attr(
-                            "src",
-                            galleryImages
-                                .eq(
-                                    currentImageIndex
-                                )
-                                .attr("src")
-                        )
-                        .fadeIn(150);
-                });
+                        $(this)
+                            .attr(
+                                "src",
+                                galleryImages
+                                    .eq(
+                                        currentImageIndex
+                                    )
+                                    .attr("src")
+                            )
+                            .fadeIn(150);
+                    }
+                );
         }
     );
 
@@ -722,19 +819,22 @@ $(document).ready(function () {
             }
 
             $("#lightboxImage")
-                .fadeOut(150, function () {
+                .fadeOut(
+                    150,
+                    function () {
 
-                    $(this)
-                        .attr(
-                            "src",
-                            galleryImages
-                                .eq(
-                                    currentImageIndex
-                                )
-                                .attr("src")
-                        )
-                        .fadeIn(150);
-                });
+                        $(this)
+                            .attr(
+                                "src",
+                                galleryImages
+                                    .eq(
+                                        currentImageIndex
+                                    )
+                                    .attr("src")
+                            )
+                            .fadeIn(150);
+                    }
+                );
         }
     );
 
@@ -748,25 +848,31 @@ $(document).ready(function () {
         function (e) {
 
             if (
-                $("#lightbox").is(":visible")
+                $("#lightbox")
+                    .is(":visible")
             ) {
 
                 if (
-                    e.key === "ArrowLeft"
+                    e.key ===
+                    "ArrowLeft"
                 ) {
-                    $("#prevImage").click();
+                    $("#prevImage")
+                        .click();
                 }
 
                 if (
-                    e.key === "ArrowRight"
+                    e.key ===
+                    "ArrowRight"
                 ) {
-                    $("#nextImage").click();
+                    $("#nextImage")
+                        .click();
                 }
 
                 if (
                     e.key === "Escape"
                 ) {
-                    $("#closeLightbox").click();
+                    $("#closeLightbox")
+                        .click();
                 }
             }
         }
