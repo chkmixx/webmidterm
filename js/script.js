@@ -23,57 +23,16 @@ $(document).ready(function () {
     });
 
 
-    $("#name").on("input blur", function () {
-        validateName();
-    });
-
-    $("#email").on("input blur", function () {
-        validateEmail();
-    });
-
-    $("#message").on("input blur", function () {
-        validateMessage();
-    });
-
-    $("#password").on("input blur", function () {
-        validatePassword();
-    });
-
-    $("#confirmPassword").on("input blur", function () {
-        validateConfirmPassword();
-    });
-
-
-    $("#registrationForm").on("submit", function (e) {
-        e.preventDefault();
-
-        let nameValid = validateName();
-        let emailValid = validateEmail();
-        let messageValid = validateMessage();
-        let passwordValid = validatePassword();
-        let confirmPasswordValid = validateConfirmPassword();
-
-        if (
-            nameValid &&
-            emailValid &&
-            messageValid &&
-            passwordValid &&
-            confirmPasswordValid
-        ) {
-            $("#formSuccess").text("Registration successful!");
-            $("#registrationForm")[0].reset();
-            $("#passwordStrength").text("");
-        } else {
-            $("#formSuccess").text("");
-        }
-    });
-
-
     function validateName() {
         let name = $("#name").val().trim();
 
         if (name === "") {
             $("#nameError").text("Name is required.");
+            return false;
+        }
+
+        if (name.length < 2) {
+            $("#nameError").text("Name must contain at least 2 characters.");
             return false;
         }
 
@@ -84,7 +43,6 @@ $(document).ready(function () {
 
     function validateEmail() {
         let email = $("#email").val().trim();
-
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (email === "") {
@@ -107,6 +65,11 @@ $(document).ready(function () {
 
         if (message === "") {
             $("#messageError").text("Message is required.");
+            return false;
+        }
+
+        if (message.length < 5) {
+            $("#messageError").text("Message must contain at least 5 characters.");
             return false;
         }
 
@@ -165,6 +128,167 @@ $(document).ready(function () {
     }
 
 
+    $("#name").on("input blur", validateName);
+    $("#email").on("input blur", validateEmail);
+    $("#message").on("input blur", validateMessage);
+    $("#password").on("input blur", validatePassword);
+    $("#confirmPassword").on("input blur", validateConfirmPassword);
+
+
+    $("#registrationForm").on("submit", function (e) {
+        e.preventDefault();
+
+        let nameValid = validateName();
+        let emailValid = validateEmail();
+        let messageValid = validateMessage();
+        let passwordValid = validatePassword();
+        let confirmPasswordValid = validateConfirmPassword();
+
+        if (
+            nameValid &&
+            emailValid &&
+            messageValid &&
+            passwordValid &&
+            confirmPasswordValid
+        ) {
+
+            localStorage.setItem("registeredEmail", $("#email").val().trim());
+            localStorage.setItem("registeredName", $("#name").val().trim());
+
+            $("#formSuccess").text(
+                "Registration successful! You can now sign in."
+            );
+
+            $("#registrationForm")[0].reset();
+            $("#passwordStrength").text("");
+        } else {
+            $("#formSuccess").text("");
+        }
+    });
+
+
+    function checkSignIn() {
+
+        let isLoggedIn = localStorage.getItem("isLoggedIn");
+        let userEmail = localStorage.getItem("userEmail");
+
+        if (isLoggedIn === "true" && userEmail) {
+
+            $("#signInForm").hide();
+            $("#signedInUser").show();
+
+            $("#userEmail").text(userEmail);
+
+        } else {
+
+            $("#signInForm").show();
+            $("#signedInUser").hide();
+        }
+    }
+
+
+    $("#signInEmail").on("input blur", function () {
+
+        let email = $(this).val().trim();
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (email === "") {
+            $("#signInEmailError").text("Email is required.");
+        } else if (!emailRegex.test(email)) {
+            $("#signInEmailError").text("Enter a valid email address.");
+        } else {
+            $("#signInEmailError").text("");
+        }
+    });
+
+
+    $("#signInPassword").on("input blur", function () {
+
+        if ($(this).val() === "") {
+            $("#signInPasswordError").text("Password is required.");
+        } else {
+            $("#signInPasswordError").text("");
+        }
+    });
+
+
+    $("#signInForm").on("submit", function (e) {
+
+        e.preventDefault();
+
+        let email = $("#signInEmail").val().trim();
+        let password = $("#signInPassword").val();
+
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        let valid = true;
+
+        if (email === "") {
+            $("#signInEmailError").text("Email is required.");
+            valid = false;
+        } else if (!emailRegex.test(email)) {
+            $("#signInEmailError").text("Enter a valid email address.");
+            valid = false;
+        } else {
+            $("#signInEmailError").text("");
+        }
+
+        if (password === "") {
+            $("#signInPasswordError").text("Password is required.");
+            valid = false;
+        } else {
+            $("#signInPasswordError").text("");
+        }
+
+        if (!valid) {
+            return;
+        }
+
+
+        let registeredEmail = localStorage.getItem("registeredEmail");
+
+        if (!registeredEmail) {
+            $("#signInError").text(
+                "No registered user found. Please register first."
+            );
+            return;
+        }
+
+        if (email !== registeredEmail) {
+            $("#signInError").text(
+                "Email does not match the registered account."
+            );
+            return;
+        }
+
+
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("userEmail", email);
+
+        $("#signInError").text("");
+
+        checkSignIn();
+    });
+
+
+    $("#signOutButton").on("click", function () {
+
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userEmail");
+
+        $("#signInForm")[0].reset();
+
+        $("#signInEmailError").text("");
+        $("#signInPasswordError").text("");
+        $("#signInError").text("");
+
+        checkSignIn();
+    });
+
+
+    checkSignIn();
+
+
     let books = [
         {
             id: 1,
@@ -191,19 +315,19 @@ $(document).ready(function () {
                     <td>${book.title}</td>
                     <td>${book.author}</td>
                     <td>
-
-                        <button type="button"
-                                class="btn btn-sm btn-dark edit-book"
-                                data-id="${book.id}">
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-dark edit-book"
+                            data-id="${book.id}">
                             Edit
                         </button>
 
-                        <button type="button"
-                                class="btn btn-sm btn-danger delete-book"
-                                data-id="${book.id}">
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-danger delete-book"
+                            data-id="${book.id}">
                             Delete
                         </button>
-
                     </td>
                 </tr>
             `;
@@ -364,7 +488,6 @@ $(document).ready(function () {
 
 
     $("#closeLightbox").on("click", function () {
-
         $("#lightbox").fadeOut(300);
     });
 
@@ -390,6 +513,7 @@ $(document).ready(function () {
                         images.eq(currentImage).attr("src")
                     )
                     .fadeIn(300);
+
             });
     });
 
@@ -415,6 +539,7 @@ $(document).ready(function () {
                         images.eq(currentImage).attr("src")
                     )
                     .fadeIn(300);
+
             });
     });
 
@@ -428,18 +553,18 @@ $(document).ready(function () {
 
 
     $("#lightboxImage").on("mouseenter", function () {
-
-        $(this).animate({
-            opacity: 0.85
-        }, 150);
+        $(this).animate(
+            { opacity: 0.85 },
+            150
+        );
     });
 
 
     $("#lightboxImage").on("mouseleave", function () {
-
-        $(this).animate({
-            opacity: 1
-        }, 150);
+        $(this).animate(
+            { opacity: 1 },
+            150
+        );
     });
 
 });
