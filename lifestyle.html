@@ -5,301 +5,305 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Emma Watson | Lifestyle</title>
+    <title>Lifestyle | Emma Watson</title>
 
-    <link rel="stylesheet"
-          href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <nav class="main-nav">
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
 
-        <div class="logo">
+        <a class="navbar-brand" href="index.html">
             ♡ EMMA WATSON
-        </div>
+        </a>
 
-        <button id="themeToggle" type="button">
-            🌙
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
         </button>
 
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="aboutme.html">About</a></li>
-            <li><a href="tech.html">Tech</a></li>
-            <li><a href="travel.html">Travel</a></li>
-            <li><a href="lifestyle.html" class="active">Lifestyle</a></li>
-            <li><a href="food.html">Food</a></li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
 
-    </nav>
+            <ul class="navbar-nav ms-auto">
 
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
 
-    <header class="page-hero">
+                <li class="nav-item">
+                    <a class="nav-link" href="aboutme.html">About</a>
+                </li>
 
-        <div class="container">
+                <li class="nav-item">
+                    <a class="nav-link" href="tech.html">Tech</a>
+                </li>
 
-            <p class="hero-small">
-                WELLNESS • BALANCE • EVERYDAY LIFE
-            </p>
+                <li class="nav-item">
+                    <a class="nav-link" href="travel.html">Travel</a>
+                </li>
 
-            <h1>
-                Emma's Lifestyle
-            </h1>
+                <li class="nav-item">
+                    <a class="nav-link active" href="lifestyle.html">Lifestyle</a>
+                </li>
 
-            <p class="hero-description">
-                Exploring personal growth, meaningful relationships,
-                creativity and taking care of yourself.
-            </p>
+                <li class="nav-item">
+                    <a class="nav-link" href="food.html">Food</a>
+                </li>
 
-        </div>
+                <li class="nav-item">
+                    <button id="themeToggle" class="btn btn-sm ms-2">🌙</button>
+                </li>
 
-    </header>
-
-
-    <main class="container content-section">
-
-        <div class="section-heading">
-
-            <h2>
-                Lifestyle & Ideas
-            </h2>
-
-            <div class="heading-line"></div>
+            </ul>
 
         </div>
+    </div>
+</nav>
 
 
-        <div class="row g-4">
+<section class="hero-section">
+    <div class="container text-center">
 
-
-            <div class="col-12 col-md-6 col-lg-4">
-
-                <article class="emma-card">
-
-                    <div class="emma-card-content">
-
-                        <span class="emma-tag">
-                            Reading
-                        </span>
-
-                        <h3>
-                            Reading
-                        </h3>
-
-                        <p>
-                            Reading can be a great way to learn new ideas,
-                            relax and explore different perspectives.
-                        </p>
-
-                        <a href="#" class="read-more">
-                            Read More →
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <div class="col-12 col-md-6 col-lg-4">
-
-                <article class="emma-card">
-
-                    <div class="emma-card-content">
-
-                        <span class="emma-tag">
-                            Travel
-                        </span>
-
-                        <h3>
-                            Travel
-                        </h3>
-
-                        <p>
-                            Travel provides opportunities to discover new
-                            cultures, places and experiences.
-                        </p>
-
-                        <a href="travel.html" class="read-more">
-                            Explore →
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <div class="col-12 col-md-6 col-lg-4">
-
-                <article class="emma-card">
-
-                    <div class="emma-card-content">
-
-                        <span class="emma-tag">
-                            Fitness
-                        </span>
-
-                        <h3>
-                            Fitness
-                        </h3>
-
-                        <p>
-                            Regular physical activity can support an active
-                            and healthy lifestyle.
-                        </p>
-
-                        <a href="#" class="read-more">
-                            Discover →
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <div class="col-12 col-md-6 col-lg-4">
-
-                <article class="emma-card">
-
-                    <div class="emma-card-content">
-
-                        <span class="emma-tag">
-                            Sustainability
-                        </span>
-
-                        <h3>
-                            Sustainability
-                        </h3>
-
-                        <p>
-                            Small everyday choices can help create a more
-                            responsible and sustainable lifestyle.
-                        </p>
-
-                        <a href="#" class="read-more">
-                            Learn More →
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <div class="col-12 col-md-6 col-lg-4">
-
-                <article class="emma-card">
-
-                    <div class="emma-card-content">
-
-                        <span class="emma-tag">
-                            Self-Care
-                        </span>
-
-                        <h3>
-                            Self-Care
-                        </h3>
-
-                        <p>
-                            Taking time to rest and focus on yourself is an
-                            important part of maintaining balance.
-                        </p>
-
-                        <a href="#" class="read-more">
-                            Read More →
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <div class="col-12 col-md-6 col-lg-4">
-
-                <article class="emma-card">
-
-                    <div class="emma-card-content">
-
-                        <span class="emma-tag">
-                            Creativity
-                        </span>
-
-                        <h3>
-                            Creativity
-                        </h3>
-
-                        <p>
-                            Creative activities can help people express
-                            themselves and develop new ideas.
-                        </p>
-
-                        <a href="#" class="read-more">
-                            Explore →
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </div>
-
-    </main>
-
-
-    <footer class="site-footer">
+        <h1>Emma Watson's Lifestyle</h1>
 
         <p>
-            © 2026 Emma Watson Blog
+            Style, balance, books and personal interests
         </p>
 
-        <p class="footer-small">
-            Actress • Activist • Inspiration ♡
-        </p>
+    </div>
+</section>
+
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+        <h2>Her Lifestyle</h2>
 
         <p>
-            <a href="mailto:info@emmawatsonblog.com">
-                Contact
-            </a>
-            &nbsp; | &nbsp;
-            <a href="#">
-                Instagram
-            </a>
-            &nbsp; | &nbsp;
-            <a href="#">
-                Twitter
-            </a>
-            &nbsp; | &nbsp;
-            <a href="#">
-                Facebook
-            </a>
+            Emma Watson is known for combining her career with education,
+            activism and personal interests.
+        </p>
+    </div>
+
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+
+                <div class="card-body">
+                    <h4 class="card-title">Education</h4>
+
+                    <p class="card-text">
+                        Emma Watson studied English literature at Brown University
+                        and continued her education while developing her acting career.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+
+                <div class="card-body">
+                    <h4 class="card-title">Reading</h4>
+
+                    <p class="card-text">
+                        Reading is one of Emma Watson's well-known interests.
+                        She has also promoted books and encouraged people to read.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+
+                <div class="card-body">
+                    <h4 class="card-title">Activism</h4>
+
+                    <p class="card-text">
+                        Emma Watson is known for supporting gender equality
+                        and women's rights and has participated in the
+                        HeForShe campaign.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="container py-5" id="faq">
+
+    <div class="text-center mb-5">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <p>
+            Click on a question to see the answer.
         </p>
 
-    </footer>
+    </div>
 
 
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <div class="faq-container">
+
+        <div class="faq-item">
+
+            <div class="faq-question">
+
+                <span>
+                    What is Emma Watson's lifestyle like?
+                </span>
+
+                <span class="faq-icon">+</span>
+
+            </div>
+
+            <div class="faq-answer">
+
+                <p>
+                    Emma Watson is known for having a relatively private
+                    and balanced lifestyle. She focuses on acting, education,
+                    activism and personal interests.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-question">
+
+                <span>
+                    Is Emma Watson interested in education?
+                </span>
+
+                <span class="faq-icon">+</span>
+
+            </div>
+
+            <div class="faq-answer">
+
+                <p>
+                    Yes. Emma Watson studied at Brown University and graduated
+                    with a degree in English literature.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-question">
+
+                <span>
+                    What causes does Emma Watson support?
+                </span>
+
+                <span class="faq-icon">+</span>
+
+            </div>
+
+            <div class="faq-answer">
+
+                <p>
+                    Emma Watson supports gender equality and women's rights.
+                    She has also been involved in the UN Women HeForShe campaign.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-question">
+
+                <span>
+                    Does Emma Watson enjoy reading?
+                </span>
+
+                <span class="faq-icon">+</span>
+
+            </div>
+
+            <div class="faq-answer">
+
+                <p>
+                    Yes. Reading is one of Emma Watson's well-known interests.
+                    She has also promoted books through her feminist book club,
+                    Our Shared Shelf.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-question">
+
+                <span>
+                    Why is Emma Watson considered an inspiration?
+                </span>
+
+                <span class="faq-icon">+</span>
+
+            </div>
+
+            <div class="faq-answer">
+
+                <p>
+                    Emma Watson is considered an inspiration because she combines
+                    her acting career with education, activism and social causes.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="text-center py-4">
+
+    <p>
+        © 2026 Emma Watson Personal Blog
+    </p>
+
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="js/script.js"></script>
 
 </body>
 
 </html>
+
