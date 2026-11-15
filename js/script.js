@@ -30,29 +30,25 @@ $(document).ready(function () {
     });
 
 
-    $("#name").on("input", function () {
-        validateName();
-    });
+$("#name").on("input blur", function () {
+    validateName();
+});
 
+$("#email").on("input blur", function () {
+    validateEmail();
+});
 
-    $("#email").on("input", function () {
-        validateEmail();
-    });
+$("#message").on("input blur", function () {
+    validateMessage();
+});
 
+$("#password").on("input blur", function () {
+    validatePassword();
+});
 
-    $("#message").on("input", function () {
-        validateMessage();
-    });
-
-
-    $("#password").on("input", function () {
-        validatePassword();
-    });
-
-
-    $("#confirmPassword").on("input", function () {
-        validateConfirmPassword();
-    });
+$("#confirmPassword").on("input blur", function () {
+    validateConfirmPassword();
+});
 
 
     function validateName() {
