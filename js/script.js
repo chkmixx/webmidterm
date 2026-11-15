@@ -1,594 +1,775 @@
 $(document).ready(function () {
 
-    let savedTheme = localStorage.getItem("theme");
+    /* =========================
+       THEME TOGGLE
+    ========================= */
 
-    if (savedTheme === "dark") {
-        $("body").addClass("dark-mode");
-        $("#themeToggle").text("☀️");
-    } else {
-        $("body").removeClass("dark-mode");
-        $("#themeToggle").text("🌙");
+    function applyTheme() {
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "dark") {
+            $("body").addClass("dark-mode");
+            $("#themeToggle").text("☀️");
+        } else {
+            $("body").removeClass("dark-mode");
+            $("#themeToggle").text("🌙");
+        }
     }
 
+    applyTheme();
 
     $("#themeToggle").on("click", function () {
-
         $("body").toggleClass("dark-mode");
 
         if ($("body").hasClass("dark-mode")) {
             localStorage.setItem("theme", "dark");
-            $("#themeToggle").text("☀️");
+            $(this).text("☀️");
         } else {
             localStorage.setItem("theme", "light");
-            $("#themeToggle").text("🌙");
+            $(this).text("🌙");
         }
-
     });
 
 
-    function validateName() {
+    /* =========================
+       REGISTRATION VALIDATION
+    ========================= */
+
+    $("#registrationForm").on("submit", function (e) {
+        e.preventDefault();
+
+        let valid = true;
 
         const name = $("#name").val().trim();
-
-        if (name === "") {
-            $("#nameError").text("Name is required.");
-            return false;
-        }
-
-        if (name.length < 2) {
-            $("#nameError").text("Name must contain at least 2 characters.");
-            return false;
-        }
-
-        $("#nameError").text("");
-        return true;
-    }
-
-
-    function validateEmail() {
-
         const email = $("#email").val().trim();
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (email === "") {
-            $("#emailError").text("Email is required.");
-            return false;
-        }
-
-        if (!emailRegex.test(email)) {
-            $("#emailError").text("Enter a valid email.");
-            return false;
-        }
-
-        $("#emailError").text("");
-        return true;
-    }
-
-
-    function validateMessage() {
-
-        const message = $("#message").val().trim();
-
-        if (message === "") {
-            $("#messageError").text("Message is required.");
-            return false;
-        }
-
-        if (message.length < 5) {
-            $("#messageError").text("Message must contain at least 5 characters.");
-            return false;
-        }
-
-        $("#messageError").text("");
-        return true;
-    }
-
-
-    function validatePassword() {
-
-        const password = $("#password").val();
-
-        if (password === "") {
-            $("#passwordStrength").text("");
-            $("#passwordError").text("Password is required.");
-            return false;
-        }
-
-        if (password.length < 6) {
-            $("#passwordStrength").text("Weak password");
-            $("#passwordError").text("Password must contain at least 6 characters.");
-            return false;
-        }
-
-        if (password.length < 10) {
-            $("#passwordStrength").text("Medium password");
-        } else {
-            $("#passwordStrength").text("Strong password");
-        }
-
-        $("#passwordError").text("");
-        return true;
-    }
-
-
-    function validateConfirmPassword() {
-
         const password = $("#password").val();
         const confirmPassword = $("#confirmPassword").val();
 
+        const emailRegex =
+            /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+        $(".error-message").remove();
+
+        if (name === "") {
+            $("#name").after(
+                '<small class="error-message text-danger">Name is required</small>'
+            );
+            valid = false;
+        }
+
+        if (email === "") {
+            $("#email").after(
+                '<small class="error-message text-danger">Email is required</small>'
+            );
+            valid = false;
+        } else if (!emailRegex.test(email)) {
+            $("#email").after(
+                '<small class="error-message text-danger">Enter a valid email</small>'
+            );
+            valid = false;
+        }
+
+        if (password === "") {
+            $("#password").after(
+                '<small class="error-message text-danger">Password is required</small>'
+            );
+            valid = false;
+        } else if (password.length < 8) {
+            $("#password").after(
+                '<small class="error-message text-danger">Password must be at least 8 characters</small>'
+            );
+            valid = false;
+        }
+
         if (confirmPassword === "") {
-            $("#confirmPasswordError").text("Please confirm your password.");
-            return false;
+            $("#confirmPassword").after(
+                '<small class="error-message text-danger">Please confirm your password</small>'
+            );
+            valid = false;
+        } else if (password !== confirmPassword) {
+            $("#confirmPassword").after(
+                '<small class="error-message text-danger">Passwords do not match</small>'
+            );
+            valid = false;
         }
 
-        if (password !== confirmPassword) {
-            $("#confirmPasswordError").text("Passwords do not match.");
-            return false;
-        }
-
-        $("#confirmPasswordError").text("");
-        return true;
-    }
-
-
-    $("#name").on("input blur", validateName);
-    $("#email").on("input blur", validateEmail);
-    $("#message").on("input blur", validateMessage);
-    $("#password").on("input blur", validatePassword);
-    $("#confirmPassword").on("input blur", validateConfirmPassword);
-
-
-    $("#registrationForm").on("submit", function (event) {
-
-        event.preventDefault();
-
-        const validName = validateName();
-        const validEmail = validateEmail();
-        const validMessage = validateMessage();
-        const validPassword = validatePassword();
-        const validConfirmPassword = validateConfirmPassword();
-
-        if (
-            validName &&
-            validEmail &&
-            validMessage &&
-            validPassword &&
-            validConfirmPassword
-        ) {
-
-            localStorage.setItem(
-                "registeredEmail",
-                $("#email").val().trim()
-            );
-
-            localStorage.setItem(
-                "registeredName",
-                $("#name").val().trim()
-            );
-
-            $("#formSuccess").text(
-                "Registration successful!"
-            );
+        if (valid) {
+            localStorage.setItem("registeredName", name);
+            localStorage.setItem("registeredEmail", email);
+            localStorage.setItem("registeredPassword", password);
 
             $("#registrationForm")[0].reset();
-            $("#passwordStrength").text("");
 
+            alert("Registration successful!");
         }
-
     });
 
 
-    function checkSignIn() {
+    /* =========================
+       REAL-TIME PASSWORD CHECK
+    ========================= */
 
-        const isLoggedIn = localStorage.getItem("isLoggedIn");
-        const userEmail = localStorage.getItem("userEmail");
+    $("#password").on("input", function () {
+        const password = $(this).val();
 
-        if (isLoggedIn === "true" && userEmail) {
+        let strength = "";
+        let color = "";
 
-            $("#signInForm").hide();
-            $("#signedInUser").show();
-
-            $("#userEmail").text(userEmail);
-
+        if (password.length === 0) {
+            strength = "";
+        } else if (password.length < 6) {
+            strength = "Weak password";
+            color = "text-danger";
+        } else if (
+            password.length >= 8 &&
+            /[A-Z]/.test(password) &&
+            /[0-9]/.test(password)
+        ) {
+            strength = "Strong password";
+            color = "text-success";
         } else {
-
-            $("#signInForm").show();
-            $("#signedInUser").hide();
-
+            strength = "Medium password";
+            color = "text-warning";
         }
 
-    }
+        $("#passwordStrength")
+            .removeClass("text-danger text-warning text-success")
+            .addClass(color)
+            .text(strength);
+    });
 
 
-    $("#signInForm").on("submit", function (event) {
+    /* =========================
+       REAL-TIME EMAIL CHECK
+    ========================= */
 
-        event.preventDefault();
+    $("#email").on("input", function () {
+        const email = $(this).val().trim();
+
+        const emailRegex =
+            /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+        if (email === "") {
+            $(this).removeClass("is-valid is-invalid");
+        } else if (emailRegex.test(email)) {
+            $(this)
+                .removeClass("is-invalid")
+                .addClass("is-valid");
+        } else {
+            $(this)
+                .removeClass("is-valid")
+                .addClass("is-invalid");
+        }
+    });
+
+
+    /* =========================
+       PASSWORD CONFIRMATION
+    ========================= */
+
+    $("#confirmPassword").on("input", function () {
+        const password = $("#password").val();
+        const confirmPassword = $(this).val();
+
+        if (confirmPassword === "") {
+            $(this).removeClass("is-valid is-invalid");
+        } else if (password === confirmPassword) {
+            $(this)
+                .removeClass("is-invalid")
+                .addClass("is-valid");
+        } else {
+            $(this)
+                .removeClass("is-valid")
+                .addClass("is-invalid");
+        }
+    });
+
+
+    /* =========================
+       SIGN IN
+    ========================= */
+
+    $("#signInForm").on("submit", function (e) {
+        e.preventDefault();
 
         const email = $("#signInEmail").val().trim();
         const password = $("#signInPassword").val();
 
-        const registeredEmail =
-            localStorage.getItem("registeredEmail");
+        const savedEmail = localStorage.getItem("registeredEmail");
+        const savedPassword = localStorage.getItem("registeredPassword");
+        const savedName = localStorage.getItem("registeredName");
 
-        $("#signInEmailError").text("");
-        $("#signInPasswordError").text("");
-        $("#signInError").text("");
-
-        let valid = true;
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (email === "") {
-            $("#signInEmailError").text("Email is required.");
-            valid = false;
-        } else if (!emailRegex.test(email)) {
-            $("#signInEmailError").text("Enter a valid email.");
-            valid = false;
-        }
-
-        if (password === "") {
-            $("#signInPasswordError").text("Password is required.");
-            valid = false;
-        }
-
-        if (!valid) {
+        if (email === "" || password === "") {
+            alert("Please fill in all fields.");
             return;
         }
 
-        if (registeredEmail && email !== registeredEmail) {
+        if (email === savedEmail && password === savedPassword) {
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("loggedInName", savedName || "User");
 
-            $("#signInError").text(
-                "This email is not registered."
-            );
+            alert("Sign in successful!");
 
-            return;
+            updateLoginInterface();
+        } else {
+            alert("Incorrect email or password.");
         }
-
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("userEmail", email);
-
-        checkSignIn();
-
     });
 
 
-    $("#signOutButton").on("click", function () {
+    /* =========================
+       LOGIN INTERFACE
+    ========================= */
 
+    function updateLoginInterface() {
+        const isLoggedIn =
+            localStorage.getItem("isLoggedIn") === "true";
+
+        if (isLoggedIn) {
+            const name =
+                localStorage.getItem("loggedInName") || "User";
+
+            $("#loginStatus").text("Welcome, " + name);
+            $("#signOutBtn").show();
+        } else {
+            $("#loginStatus").text("");
+            $("#signOutBtn").hide();
+        }
+    }
+
+    updateLoginInterface();
+
+
+    /* =========================
+       SIGN OUT
+    ========================= */
+
+    $("#signOutBtn").on("click", function () {
         localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("userEmail");
+        localStorage.removeItem("loggedInName");
 
-        checkSignIn();
+        alert("You have been signed out.");
 
+        updateLoginInterface();
     });
 
 
-    checkSignIn();
+    /* =========================
+       TECH SEARCH
+    ========================= */
+
+    function filterPosts() {
+        const searchValue =
+            $("#postSearch").val().toLowerCase().trim();
+
+        $(".post-card").each(function () {
+            const cardText =
+                $(this).text().toLowerCase();
+
+            if (cardText.includes(searchValue)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+    $("#postSearch").on("input keyup", function () {
+        filterPosts();
+    });
 
 
-    let books = [
+    /* =========================
+       CATEGORY FILTER
+    ========================= */
+
+    $(".category-btn").on("click", function () {
+        const category =
+            $(this).data("category");
+
+        $(".category-btn").removeClass("active");
+        $(this).addClass("active");
+
+        const searchValue =
+            $("#postSearch").val().toLowerCase().trim();
+
+        $(".post-card").each(function () {
+            const card = $(this);
+            const cardText = card.text().toLowerCase();
+            const cardCategory =
+                String(card.data("category") || "").toLowerCase();
+
+            const matchesSearch =
+                cardText.includes(searchValue);
+
+            const matchesCategory =
+                category === "all" ||
+                category === "" ||
+                cardCategory === String(category).toLowerCase();
+
+            if (matchesSearch && matchesCategory) {
+                card.show();
+            } else {
+                card.hide();
+            }
+        });
+    });
+
+
+    /* =========================
+       CRUD
+    ========================= */
+
+    let books = JSON.parse(
+        localStorage.getItem("books")
+    ) || [
         {
             id: 1,
             title: "Little Women",
-            author: "Louisa May Alcott"
+            author: "Louisa May Alcott",
+            year: 1868
         },
         {
             id: 2,
-            title: "The Little Prince",
-            author: "Antoine de Saint-Exupéry"
+            title: "Harry Potter",
+            author: "J.K. Rowling",
+            year: 1997
         }
     ];
 
 
-    function displayBooks() {
+    function saveBooks() {
+        localStorage.setItem(
+            "books",
+            JSON.stringify(books)
+        );
+    }
 
-        $("#booksBody").empty();
+
+    function displayBooks() {
+        const tableBody =
+            $("#bookTableBody");
+
+        if (tableBody.length === 0) {
+            return;
+        }
+
+        tableBody.empty();
 
         books.forEach(function (book) {
-
-            $("#booksBody").append(`
+            tableBody.append(`
                 <tr>
+                    <td>${book.id}</td>
                     <td>${book.title}</td>
                     <td>${book.author}</td>
+                    <td>${book.year}</td>
                     <td>
-                        <button class="btn btn-sm btn-warning edit-book"
-                                data-id="${book.id}">
+                        <button
+                            class="btn btn-sm btn-warning edit-book"
+                            data-id="${book.id}">
                             Edit
                         </button>
 
-                        <button class="btn btn-sm btn-danger delete-book"
-                                data-id="${book.id}">
+                        <button
+                            class="btn btn-sm btn-danger delete-book"
+                            data-id="${book.id}">
                             Delete
                         </button>
                     </td>
                 </tr>
             `);
-
         });
-
     }
-
 
     displayBooks();
 
 
-    $("#bookForm").on("submit", function (event) {
+    /* =========================
+       CREATE BOOK
+    ========================= */
 
-        event.preventDefault();
+    $("#bookForm").on("submit", function (e) {
+        e.preventDefault();
 
-        const title = $("#bookTitle").val().trim();
-        const author = $("#bookAuthor").val().trim();
+        const title =
+            $("#bookTitle").val().trim();
 
-        if (title === "" || author === "") {
+        const author =
+            $("#bookAuthor").val().trim();
+
+        const year =
+            $("#bookYear").val().trim();
+
+        if (
+            title === "" ||
+            author === "" ||
+            year === ""
+        ) {
+            alert("Please fill in all fields.");
             return;
         }
 
-        const newId =
-            books.length > 0
-                ? Math.max(...books.map(book => book.id)) + 1
-                : 1;
+        const newBook = {
+            id:
+                books.length > 0
+                    ? Math.max(...books.map(book => book.id)) + 1
+                    : 1,
 
-        books.push({
-            id: newId,
             title: title,
-            author: author
-        });
+            author: author,
+            year: Number(year)
+        };
 
+        books.push(newBook);
+
+        saveBooks();
         displayBooks();
 
-        $("#bookForm")[0].reset();
+        this.reset();
 
+        alert("Book added successfully!");
     });
 
 
-    $(document).on("click", ".delete-book", function () {
+    /* =========================
+       UPDATE BOOK
+    ========================= */
 
-        const id = Number($(this).data("id"));
+    $(document).on(
+        "click",
+        ".edit-book",
+        function () {
 
-        books = books.filter(function (book) {
-            return book.id !== id;
-        });
+            const id =
+                Number($(this).data("id"));
 
-        displayBooks();
+            const book =
+                books.find(function (item) {
+                    return item.id === id;
+                });
 
-    });
-
-
-    $(document).on("click", ".edit-book", function () {
-
-        const id = Number($(this).data("id"));
-
-        const book = books.find(function (book) {
-            return book.id === id;
-        });
-
-        if (!book) {
-            return;
-        }
-
-        const newTitle = prompt(
-            "Enter new book title:",
-            book.title
-        );
-
-        if (newTitle === null) {
-            return;
-        }
-
-        const newAuthor = prompt(
-            "Enter new author:",
-            book.author
-        );
-
-        if (newAuthor === null) {
-            return;
-        }
-
-        book.title = newTitle.trim();
-        book.author = newAuthor.trim();
-
-        displayBooks();
-
-    });
-
-
-    function searchBooks() {
-
-        const query = $("#apiSearch").val().trim();
-
-        if (query === "") {
-
-            $("#apiStatus").text(
-                "Please enter a book title."
-            );
-
-            $("#apiResults").empty();
-
-            return;
-        }
-
-        $("#apiStatus").text("Searching...");
-        $("#apiResults").empty();
-
-
-        fetch(
-            "https://openlibrary.org/search.json?title=" +
-            encodeURIComponent(query)
-        )
-
-        .then(function (response) {
-
-            if (!response.ok) {
-                throw new Error("API request failed");
-            }
-
-            return response.json();
-
-        })
-
-        .then(function (data) {
-
-            const books = data.docs.slice(0, 6);
-
-            if (books.length === 0) {
-
-                $("#apiStatus").text(
-                    "No books found."
-                );
-
+            if (!book) {
                 return;
             }
 
-            $("#apiStatus").text(
-                `Found ${data.numFound} books. Showing ${books.length} results.`
-            );
+            const newTitle =
+                prompt("Enter book title:", book.title);
+
+            if (newTitle === null) {
+                return;
+            }
+
+            const newAuthor =
+                prompt("Enter author:", book.author);
+
+            if (newAuthor === null) {
+                return;
+            }
+
+            const newYear =
+                prompt("Enter year:", book.year);
+
+            if (newYear === null) {
+                return;
+            }
+
+            book.title =
+                newTitle.trim();
+
+            book.author =
+                newAuthor.trim();
+
+            book.year =
+                Number(newYear);
+
+            saveBooks();
+            displayBooks();
+        }
+    );
 
 
-            books.forEach(function (book) {
+    /* =========================
+       DELETE BOOK
+    ========================= */
 
-                const title =
-                    book.title || "Unknown title";
+    $(document).on(
+        "click",
+        ".delete-book",
+        function () {
 
-                const author =
-                    book.author_name
-                        ? book.author_name[0]
-                        : "Unknown author";
+            const id =
+                Number($(this).data("id"));
 
-                const year =
-                    book.first_publish_year ||
-                    "Unknown year";
+            const confirmed =
+                confirm(
+                    "Are you sure you want to delete this book?"
+                );
 
-                const cover =
-                    book.cover_i
-                        ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
-                        : "https://via.placeholder.com/150x220?text=No+Cover";
+            if (!confirmed) {
+                return;
+            }
 
+            books =
+                books.filter(function (book) {
+                    return book.id !== id;
+                });
 
-                $("#apiResults").append(`
-
-                    <div class="col-md-4 mb-4">
-
-                        <div class="card h-100 shadow-sm">
-
-                            <img src="${cover}"
-                                 class="card-img-top"
-                                 alt="${title}"
-                                 style="height: 300px; object-fit: cover;">
-
-                            <div class="card-body">
-
-                                <h5 class="card-title">
-                                    ${title}
-                                </h5>
-
-                                <p class="card-text">
-
-                                    <strong>Author:</strong>
-                                    ${author}
-
-                                    <br>
-
-                                    <strong>First published:</strong>
-                                    ${year}
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                `);
-
-            });
-
-        })
-
-        .catch(function (error) {
-
-            console.error(error);
-
-            $("#apiStatus").text(
-                "Sorry, something went wrong while loading books."
-            );
-
-        });
-
-    }
+            saveBooks();
+            displayBooks();
+        }
+    );
 
 
-    $("#apiSearchButton").on("click", searchBooks);
+    /* =========================
+       API
+    ========================= */
 
+    $("#apiSearch").on("input", function () {
 
-    $("#apiSearch").on("keypress", function (event) {
+        const query =
+            $(this).val().trim();
 
-        if (event.key === "Enter") {
-            searchBooks();
+        if (query === "") {
+            $("#apiResults").empty();
+            $("#apiStatus").text("");
+            return;
         }
 
+        $("#apiStatus").text("Loading...");
+
+        fetch(
+            "https://openlibrary.org/search.json?q=" +
+            encodeURIComponent(query)
+        )
+            .then(function (response) {
+
+                if (!response.ok) {
+                    throw new Error("API request failed");
+                }
+
+                return response.json();
+            })
+
+            .then(function (data) {
+
+                $("#apiResults").empty();
+
+                const books =
+                    data.docs.slice(0, 6);
+
+                $("#apiStatus").text(
+                    "Found " +
+                    data.numFound +
+                    " books. Showing " +
+                    books.length +
+                    " results."
+                );
+
+                books.forEach(function (book) {
+
+                    const title =
+                        book.title || "Unknown title";
+
+                    const author =
+                        book.author_name
+                            ? book.author_name[0]
+                            : "Unknown author";
+
+                    const year =
+                        book.first_publish_year
+                            || "Unknown";
+
+                    $("#apiResults").append(`
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        ${title}
+                                    </h5>
+
+                                    <p class="card-text">
+                                        Author: ${author}
+                                    </p>
+
+                                    <p class="card-text">
+                                        First published: ${year}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                });
+            })
+
+            .catch(function (error) {
+
+                console.error(error);
+
+                $("#apiStatus").text(
+                    "Sorry, something went wrong. Please try again."
+                );
+
+                $("#apiResults").empty();
+            });
     });
 
+
+    /* =========================
+       FAQ
+    ========================= */
 
     $(".faq-question").on("click", function () {
 
-        $(this)
-            .next(".faq-answer")
-            .slideToggle(400);
+        const answer =
+            $(this).next(".faq-answer");
 
-        const icon = $(this).find(".faq-icon");
+        answer.slideToggle(300);
 
-        if (icon.text() === "+") {
-            icon.text("−");
+        const indicator =
+            $(this).find(".faq-icon");
+
+        if (indicator.text() === "+") {
+            indicator.text("−");
         } else {
-            icon.text("+");
+            indicator.text("+");
         }
-
     });
-      let currentImageIndex = 0;
 
-const galleryImages = $(".gallery-image");
 
-$(".gallery-image").on("click", function () {
-    currentImageIndex = galleryImages.index(this);
+    /* =========================
+       TRAVEL GALLERY
+    ========================= */
 
-    $("#lightboxImage").attr("src", $(this).attr("src"));
+    let currentImageIndex = 0;
 
-    $("#lightbox")
-        .css("display", "flex")
-        .hide()
-        .fadeIn(300);
+    const galleryImages =
+        $(".gallery-image");
+
+
+    $(".gallery-image").on(
+        "click",
+        function () {
+
+            currentImageIndex =
+                galleryImages.index(this);
+
+            $("#lightboxImage")
+                .attr(
+                    "src",
+                    $(this).attr("src")
+                );
+
+            $("#lightbox")
+                .css("display", "flex")
+                .hide()
+                .fadeIn(300);
+        }
+    );
+
+
+    $("#closeLightbox").on(
+        "click",
+        function () {
+
+            $("#lightbox")
+                .fadeOut(300);
+        }
+    );
+
+
+    $("#prevImage").on(
+        "click",
+        function () {
+
+            currentImageIndex--;
+
+            if (
+                currentImageIndex < 0
+            ) {
+                currentImageIndex =
+                    galleryImages.length - 1;
+            }
+
+            $("#lightboxImage")
+                .fadeOut(150, function () {
+
+                    $(this)
+                        .attr(
+                            "src",
+                            galleryImages
+                                .eq(
+                                    currentImageIndex
+                                )
+                                .attr("src")
+                        )
+                        .fadeIn(150);
+                });
+        }
+    );
+
+
+    $("#nextImage").on(
+        "click",
+        function () {
+
+            currentImageIndex++;
+
+            if (
+                currentImageIndex >=
+                galleryImages.length
+            ) {
+                currentImageIndex = 0;
+            }
+
+            $("#lightboxImage")
+                .fadeOut(150, function () {
+
+                    $(this)
+                        .attr(
+                            "src",
+                            galleryImages
+                                .eq(
+                                    currentImageIndex
+                                )
+                                .attr("src")
+                        )
+                        .fadeIn(150);
+                });
+        }
+    );
+
+
+    /* =========================
+       LIGHTBOX KEYBOARD
+    ========================= */
+
+    $(document).on(
+        "keydown",
+        function (e) {
+
+            if (
+                $("#lightbox").is(":visible")
+            ) {
+
+                if (
+                    e.key === "ArrowLeft"
+                ) {
+                    $("#prevImage").click();
+                }
+
+                if (
+                    e.key === "ArrowRight"
+                ) {
+                    $("#nextImage").click();
+                }
+
+                if (
+                    e.key === "Escape"
+                ) {
+                    $("#closeLightbox").click();
+                }
+            }
+        }
+    );
+
 });
-
-$("#closeLightbox").on("click", function () {
-    $("#lightbox").fadeOut(300);
-});
-
-$("#prevImage").on("click", function () {
-    currentImageIndex--;
-
-    if (currentImageIndex < 0) {
-        currentImageIndex = galleryImages.length - 1;
-    }
-
-    $("#lightboxImage").fadeOut(150, function () {
-        $(this)
-            .attr("src", galleryImages.eq(currentImageIndex).attr("src"))
-            .fadeIn(150);
-    });
-});
-
-$("#nextImage").on("click", function () {
-    currentImageIndex++;
-
-    if (currentImageIndex >= galleryImages.length) {
-        currentImageIndex = 0;
-    }
-
-    $("#lightboxImage").fadeOut(150, function () {
-        $(this)
-            .attr("src", galleryImages.eq(currentImageIndex).attr("src"))
-            .fadeIn(150);
-    });
-});
-    
