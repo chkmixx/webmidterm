@@ -1,17 +1,16 @@
 $(document).ready(function () {
 
-    if (localStorage.getItem("theme") === "dark") {
+    let savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
         $("body").addClass("dark-mode");
         $("#themeToggle").text("☀️");
     } else {
+        $("body").removeClass("dark-mode");
         $("#themeToggle").text("🌙");
     }
 
-
-    $("#themeToggle").on("click", function (e) {
-
-        e.preventDefault();
-
+    $("#themeToggle").on("click", function () {
         $("body").toggleClass("dark-mode");
 
         if ($("body").hasClass("dark-mode")) {
@@ -24,35 +23,53 @@ $(document).ready(function () {
     });
 
 
-    $("#registrationForm").on("submit", function (e) {
-        e.preventDefault();
-        validateForm();
+    $("#name").on("input blur", function () {
+        validateName();
+    });
+
+    $("#email").on("input blur", function () {
+        validateEmail();
+    });
+
+    $("#message").on("input blur", function () {
+        validateMessage();
+    });
+
+    $("#password").on("input blur", function () {
+        validatePassword();
+    });
+
+    $("#confirmPassword").on("input blur", function () {
+        validateConfirmPassword();
     });
 
 
-$("#name").on("input blur", function () {
-    validateName();
-});
+    $("#registrationForm").on("submit", function (e) {
+        e.preventDefault();
 
-$("#email").on("input blur", function () {
-    validateEmail();
-});
+        let nameValid = validateName();
+        let emailValid = validateEmail();
+        let messageValid = validateMessage();
+        let passwordValid = validatePassword();
+        let confirmPasswordValid = validateConfirmPassword();
 
-$("#message").on("input blur", function () {
-    validateMessage();
-});
-
-$("#password").on("input blur", function () {
-    validatePassword();
-});
-
-$("#confirmPassword").on("input blur", function () {
-    validateConfirmPassword();
-});
+        if (
+            nameValid &&
+            emailValid &&
+            messageValid &&
+            passwordValid &&
+            confirmPasswordValid
+        ) {
+            $("#formSuccess").text("Registration successful!");
+            $("#registrationForm")[0].reset();
+            $("#passwordStrength").text("");
+        } else {
+            $("#formSuccess").text("");
+        }
+    });
 
 
     function validateName() {
-
         let name = $("#name").val().trim();
 
         if (name === "") {
@@ -66,11 +83,9 @@ $("#confirmPassword").on("input blur", function () {
 
 
     function validateEmail() {
-
         let email = $("#email").val().trim();
 
-        let emailRegex =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (email === "") {
             $("#emailError").text("Email is required.");
@@ -88,7 +103,6 @@ $("#confirmPassword").on("input blur", function () {
 
 
     function validateMessage() {
-
         let message = $("#message").val().trim();
 
         if (message === "") {
@@ -102,110 +116,52 @@ $("#confirmPassword").on("input blur", function () {
 
 
     function validatePassword() {
-
         let password = $("#password").val();
 
-        let text = "";
-
-        if (password.length === 0) {
-
+        if (password === "") {
             $("#passwordStrength").text("");
             $("#passwordError").text("Password is required.");
-
             return false;
         }
 
         if (password.length < 6) {
-
-            text = "Weak password";
-
-            $("#passwordError").text(
-                "Password must contain at least 6 characters."
-            );
-
-        } else if (password.length < 10) {
-
-            text = "Medium password";
-
-            $("#passwordError").text("");
-
-        } else {
-
-            text = "Strong password";
-
-            $("#passwordError").text("");
+            $("#passwordStrength").text("Weak password");
+            $("#passwordError").text("Password must contain at least 6 characters.");
+            return false;
         }
 
-        $("#passwordStrength").text(text);
+        if (password.length < 10) {
+            $("#passwordStrength").text("Medium password");
+            $("#passwordError").text("");
+        } else {
+            $("#passwordStrength").text("Strong password");
+            $("#passwordError").text("");
+        }
 
         if ($("#confirmPassword").val() !== "") {
             validateConfirmPassword();
         }
 
-        return password.length >= 6;
-    }
-
-
-    function validateConfirmPassword() {
-
-        let password = $("#password").val();
-
-        let confirmPassword =
-            $("#confirmPassword").val();
-
-        if (confirmPassword === "") {
-
-            $("#confirmPasswordError").text(
-                "Please confirm your password."
-            );
-
-            return false;
-        }
-
-        if (password !== confirmPassword) {
-
-            $("#confirmPasswordError").text(
-                "Passwords do not match."
-            );
-
-            return false;
-        }
-
-        $("#confirmPasswordError").text("");
-
         return true;
     }
 
 
-    function validateForm() {
+    function validateConfirmPassword() {
+        let password = $("#password").val();
+        let confirmPassword = $("#confirmPassword").val();
 
-        let nameValid = validateName();
-        let emailValid = validateEmail();
-        let messageValid = validateMessage();
-        let passwordValid = validatePassword();
-        let confirmPasswordValid =
-            validateConfirmPassword();
-
-        if (
-            nameValid &&
-            emailValid &&
-            messageValid &&
-            passwordValid &&
-            confirmPasswordValid
-        ) {
-
-            $("#formSuccess").text(
-                "Registration successful!"
-            );
-
-            $("#registrationForm")[0].reset();
-
-            $("#passwordStrength").text("");
-
-        } else {
-
-            $("#formSuccess").text("");
+        if (confirmPassword === "") {
+            $("#confirmPasswordError").text("Please confirm your password.");
+            return false;
         }
+
+        if (password !== confirmPassword) {
+            $("#confirmPasswordError").text("Passwords do not match.");
+            return false;
+        }
+
+        $("#confirmPasswordError").text("");
+        return true;
     }
 
 
@@ -236,17 +192,15 @@ $("#confirmPassword").on("input blur", function () {
                     <td>${book.author}</td>
                     <td>
 
-                        <button
-                            type="button"
-                            class="btn btn-sm btn-dark edit-book"
-                            data-id="${book.id}">
+                        <button type="button"
+                                class="btn btn-sm btn-dark edit-book"
+                                data-id="${book.id}">
                             Edit
                         </button>
 
-                        <button
-                            type="button"
-                            class="btn btn-sm btn-danger delete-book"
-                            data-id="${book.id}">
+                        <button type="button"
+                                class="btn btn-sm btn-danger delete-book"
+                                data-id="${book.id}">
                             Delete
                         </button>
 
@@ -259,29 +213,25 @@ $("#confirmPassword").on("input blur", function () {
     }
 
 
-    displayBooks();
+    if ($("#booksBody").length) {
+        displayBooks();
+    }
 
 
     $("#bookForm").on("submit", function (e) {
 
         e.preventDefault();
 
-        let title =
-            $("#bookTitle").val().trim();
-
-        let author =
-            $("#bookAuthor").val().trim();
+        let title = $("#bookTitle").val().trim();
+        let author = $("#bookAuthor").val().trim();
 
         if (title === "" || author === "") {
             return;
         }
 
-        let newId =
-            books.length > 0
-                ? Math.max(
-                    ...books.map(book => book.id)
-                ) + 1
-                : 1;
+        let newId = books.length > 0
+            ? Math.max(...books.map(book => book.id)) + 1
+            : 1;
 
         books.push({
             id: newId,
@@ -295,95 +245,69 @@ $("#confirmPassword").on("input blur", function () {
     });
 
 
-    $(document).on(
-        "click",
-        ".delete-book",
-        function (e) {
+    $(document).on("click", ".delete-book", function () {
 
-            e.preventDefault();
+        let id = Number($(this).data("id"));
 
-            let id =
-                Number($(this).data("id"));
+        books = books.filter(function (book) {
+            return book.id !== id;
+        });
 
-            books = books.filter(function (book) {
+        displayBooks();
+    });
 
-                return book.id !== id;
 
-            });
+    $(document).on("click", ".edit-book", function () {
 
-            displayBooks();
+        let id = Number($(this).data("id"));
+
+        let book = books.find(function (book) {
+            return book.id === id;
+        });
+
+        if (!book) {
+            return;
         }
-    );
 
+        let newTitle = prompt(
+            "Enter new book title:",
+            book.title
+        );
 
-    $(document).on(
-        "click",
-        ".edit-book",
-        function (e) {
-
-            e.preventDefault();
-
-            let id =
-                Number($(this).data("id"));
-
-            let book =
-                books.find(function (book) {
-
-                    return book.id === id;
-
-                });
-
-            if (!book) {
-                return;
-            }
-
-            let newTitle =
-                prompt(
-                    "Enter new book title:",
-                    book.title
-                );
-
-            if (newTitle === null) {
-                return;
-            }
-
-            let newAuthor =
-                prompt(
-                    "Enter new author:",
-                    book.author
-                );
-
-            if (newAuthor === null) {
-                return;
-            }
-
-            if (
-                newTitle.trim() === "" ||
-                newAuthor.trim() === ""
-            ) {
-                return;
-            }
-
-            book.title =
-                newTitle.trim();
-
-            book.author =
-                newAuthor.trim();
-
-            displayBooks();
+        if (newTitle === null) {
+            return;
         }
-    );
+
+        let newAuthor = prompt(
+            "Enter new author:",
+            book.author
+        );
+
+        if (newAuthor === null) {
+            return;
+        }
+
+        if (
+            newTitle.trim() === "" ||
+            newAuthor.trim() === ""
+        ) {
+            return;
+        }
+
+        book.title = newTitle.trim();
+        book.author = newAuthor.trim();
+
+        displayBooks();
+    });
 
 
     $("#searchInput").on("input", function () {
 
-        let value =
-            $(this).val().toLowerCase();
+        let value = $(this).val().toLowerCase();
 
         $(".filter-item").each(function () {
 
-            let text =
-                $(this).text().toLowerCase();
+            let text = $(this).text().toLowerCase();
 
             if (text.includes(value)) {
                 $(this).show();
@@ -396,18 +320,15 @@ $("#confirmPassword").on("input blur", function () {
 
     $(".category-btn").on("click", function () {
 
-        let category =
-            $(this).data("category");
+        let category = $(this).data("category");
 
-        $(".category-btn")
-            .removeClass("active");
+        $(".category-btn").removeClass("active");
 
         $(this).addClass("active");
 
         $(".filter-item").each(function () {
 
-            let itemCategory =
-                $(this).data("category");
+            let itemCategory = $(this).data("category");
 
             if (
                 category === "all" ||
@@ -426,11 +347,9 @@ $("#confirmPassword").on("input blur", function () {
 
     $("#gallery img").on("click", function () {
 
-        currentImage =
-            $("#gallery img").index(this);
+        currentImage = $("#gallery img").index(this);
 
-        let image =
-            $(this).attr("src");
+        let image = $(this).attr("src");
 
         $("#lightboxImage")
             .attr("src", image)
@@ -447,7 +366,6 @@ $("#confirmPassword").on("input blur", function () {
     $("#closeLightbox").on("click", function () {
 
         $("#lightbox").fadeOut(300);
-
     });
 
 
@@ -455,14 +373,12 @@ $("#confirmPassword").on("input blur", function () {
 
         e.stopPropagation();
 
-        let images =
-            $("#gallery img");
+        let images = $("#gallery img");
 
         currentImage--;
 
         if (currentImage < 0) {
-            currentImage =
-                images.length - 1;
+            currentImage = images.length - 1;
         }
 
         $("#lightboxImage")
@@ -471,12 +387,9 @@ $("#confirmPassword").on("input blur", function () {
                 $(this)
                     .attr(
                         "src",
-                        images
-                            .eq(currentImage)
-                            .attr("src")
+                        images.eq(currentImage).attr("src")
                     )
                     .fadeIn(300);
-
             });
     });
 
@@ -485,15 +398,11 @@ $("#confirmPassword").on("input blur", function () {
 
         e.stopPropagation();
 
-        let images =
-            $("#gallery img");
+        let images = $("#gallery img");
 
         currentImage++;
 
-        if (
-            currentImage >=
-            images.length
-        ) {
+        if (currentImage >= images.length) {
             currentImage = 0;
         }
 
@@ -503,12 +412,9 @@ $("#confirmPassword").on("input blur", function () {
                 $(this)
                     .attr(
                         "src",
-                        images
-                            .eq(currentImage)
-                            .attr("src")
+                        images.eq(currentImage).attr("src")
                     )
                     .fadeIn(300);
-
             });
     });
 
@@ -521,27 +427,19 @@ $("#confirmPassword").on("input blur", function () {
     });
 
 
-    $("#lightboxImage").on(
-        "mouseenter",
-        function () {
+    $("#lightboxImage").on("mouseenter", function () {
 
-            $(this).animate({
-                opacity: 0.85
-            }, 150);
-
-        }
-    );
+        $(this).animate({
+            opacity: 0.85
+        }, 150);
+    });
 
 
-    $("#lightboxImage").on(
-        "mouseleave",
-        function () {
+    $("#lightboxImage").on("mouseleave", function () {
 
-            $(this).animate({
-                opacity: 1
-            }, 150);
-
-        }
-    );
+        $(this).animate({
+            opacity: 1
+        }, 150);
+    });
 
 });
