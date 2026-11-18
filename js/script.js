@@ -1,10 +1,5 @@
 $(document).ready(function () {
-
-    /* =========================
-       THEME TOGGLE
-    ========================= */
-
-    function applyTheme() {
+ function applyTheme() {
 
         const savedTheme = localStorage.getItem("theme");
 
@@ -39,11 +34,6 @@ $(document).ready(function () {
 
         }
     });
-
-
-    /* =========================
-       REGISTRATION VALIDATION
-    ========================= */
 
     function validateName() {
 
@@ -238,11 +228,6 @@ $(document).ready(function () {
 
     });
 
-
-    /* =========================
-       SIGN IN
-    ========================= */
-
     function checkSignIn() {
 
         const isLoggedIn =
@@ -380,12 +365,6 @@ $(document).ready(function () {
 
 
     checkSignIn();
-
-
-    /* =========================
-       CRUD BOOKS
-    ========================= */
-
     let books = [
 
         {
@@ -599,12 +578,6 @@ $(document).ready(function () {
 
         }
     );
-
-
-    /* =========================
-       API SEARCH
-    ========================= */
-
     function searchBooks() {
 
         const query =
@@ -782,11 +755,6 @@ $(document).ready(function () {
         }
     );
 
-
-    /* =========================
-       TECH SEARCH AND FILTER
-    ========================= */
-
     function filterPosts() {
 
         const searchText =
@@ -853,12 +821,6 @@ $(document).ready(function () {
 
         }
     );
-
-
-    /* =========================
-       FAQ
-    ========================= */
-
     $(".faq-question").on(
         "click",
         function () {
@@ -885,12 +847,6 @@ $(document).ready(function () {
 
         }
     );
-
-
-    /* =========================
-       TRAVEL GALLERY
-    ========================= */
-
     let currentImageIndex = 0;
 
     const galleryImages =
@@ -1010,12 +966,6 @@ $(document).ready(function () {
 
         }
     );
-
-
-    /* =========================
-       LIGHTBOX KEYBOARD
-    ========================= */
-
     $(document).on(
         "keydown",
         function (event) {
