@@ -1,22 +1,17 @@
- WEB
-IT-2503
-
-# Emma Watson Personal Blog
-
-## Project Topic
-
+WEB
+group:IT-2503
 Personal blog about Emma Watson.
 
-## Group Members
+# Group Members
 
-- Nurbolsyn
+- Nurbolsyn 
 - Saniya
 - Tomiris
 
-## Project Description
+# Project Description
 Our project is a personal blog about Emma Watson. She is a who borned France in 1990, and a English actress, model, and activist. The website includes information about her lifestyle, food, travel, technology and personal life. The website has connected all 6 pages, and for this we used HTML, CSS, JavaScript, jQuery and Bootsrap. Also our webside is responsive and works on different screen sizes.
 
-## Pages 6 
+# Pages 6 
 
 - Home page
 - About page
@@ -25,7 +20,7 @@ Our project is a personal blog about Emma Watson. She is a who borned France in 
 - Lifestyle page
 - Food page
 
-## Features
+# Features
 
 - 6 connected pages
 - Navigation bar
@@ -80,9 +75,9 @@ We added an FAQ section to the Lifestyle page. Users can click a question to ope
 - GitHub
 - GitHub Pages
 
-## JavaScript Features
+# JavaScript Features
 
-### Registration Validation
+# Registration Validation
 
 The registration form uses client-side JavaScript validation.
 
@@ -96,7 +91,7 @@ It checks:
 - Error messages
 - Successful form submission
 
-### Search and Filtering
+# Search and Filtering
 
 The Tech page includes:
 
@@ -113,7 +108,7 @@ Users can filter posts by:
 - Education
 - Digital
 
-### CRUD Operations
+# CRUD Operations
 
 The About page includes a dynamic books table.
 
@@ -125,7 +120,7 @@ Users can:
 - **Delete** books
 - Confirm before deleting
 
-### Image Gallery
+# Image Gallery
 
 The Travel page includes a Bootstrap image gallery.
 
@@ -140,7 +135,7 @@ The gallery provides:
 - jQuery `fadeOut()`
 - jQuery `animate()`
 
-## Group Contributions
+# Group Contributions
 
 **Nurbolsyn:**
 - `index.html`
@@ -160,7 +155,7 @@ The gallery provides:
 - CSS and responsive design
 - JavaScript and jQuery integration
 
-## Responsive Design
+# Responsive Design
 
 The website is designed to work on:
 
@@ -171,7 +166,7 @@ The website is designed to work on:
 
 Bootstrap responsive grid and CSS media queries are used to adapt the layout to different screen sizes.
 
-## Published Website
+# Published Website
 
 https://chkmixx.github.io/webmidterm/
 
