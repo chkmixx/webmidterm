@@ -1,6 +1,6 @@
-# WEB
+ WEB
 
-**Group:** IT-2503
+# Group: IT-2503
 
 **Project:** Personal Blog About Emma Watson
 
@@ -10,7 +10,7 @@
 - Saniya
 - Tomiris
 
-## Project Description
+ Project Description
 
 Our project is a personal blog about Emma Watson. She was born in France in 1990 and is an English actress, model, and activist.
 
@@ -20,7 +20,7 @@ The website consists of 6 connected pages. We used HTML, CSS, JavaScript, jQuery
 
 Our website is responsive and works on different screen sizes.
 
-## Pages
+# Pages
 
 - Home page
 - About page
@@ -29,7 +29,7 @@ Our website is responsive and works on different screen sizes.
 - Lifestyle page
 - Food page
 
-## Features
+# Features
 
 - 6 connected pages
 - Navigation bar
@@ -61,7 +61,7 @@ Our website is responsive and works on different screen sizes.
 - Public API integration
 - FAQ section
 
-## CRUD Operations
+# CRUD Operations
 
 The About page contains a dynamic books table where users can:
 
@@ -70,7 +70,7 @@ The About page contains a dynamic books table where users can:
 - **Update** existing book information
 - **Delete** books
 
-## Search and Filtering
+# Search and Filtering
 
 The Tech page includes:
 
@@ -87,7 +87,7 @@ Users can filter posts by:
 - Education
 - Digital
 
-## Registration Validation
+# Registration Validation
 
 The registration form uses client-side JavaScript validation.
 
@@ -102,7 +102,7 @@ It checks:
 - Successful form submission
 - Real-time feedback
 
-## Image Gallery
+# Image Gallery
 
 The Travel page includes a Bootstrap image gallery.
 
@@ -117,13 +117,13 @@ The gallery provides:
 - jQuery `fadeOut()`
 - jQuery `animate()`
 
-## Theme Toggle
+# Theme Toggle
 
 We added a theme toggle to the website.
 
 The selected theme is saved in `localStorage`, so it remains active after refreshing the page.
 
-## Sign-In Form
+# Sign-In Form
 
 We added a sign-in form to the website.
 
@@ -133,7 +133,7 @@ The login state remains after refreshing the page.
 
 Users can also sign out, which clears the saved login state.
 
-## API Integration
+# API Integration
 
 We integrated a public API into our project.
 
@@ -145,7 +145,7 @@ Users can search for books using the API.
 
 For example, we can search for **Little Women** and display the book results.
 
-## FAQ
+# FAQ
 
 We added an FAQ section to the Lifestyle page.
 
