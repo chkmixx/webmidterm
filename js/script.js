@@ -469,48 +469,17 @@ $(document).ready(function () {
     });
 
 
-    $(document).on(
-        "click",
-        ".delete-book",
-        function () {
+  $(document).on("click", ".delete-book", function () {
 
-            const id =
-                Number($(this).data("id"));
+    const id = Number($(this).data("id"));
 
-            const book =
-                books.find(function (book) {
-                    return book.id === id;
-                });
+    books = books.filter(function (book) {
+        return book.id !== id;
+    });
 
+    displayBooks();
 
-            if (!book) {
-                return;
-            }
-
-
-            const confirmed =
-                confirm(
-                    "Are you sure you want to delete this book?"
-                );
-
-
-            if (!confirmed) {
-                return;
-            }
-
-
-            books =
-                books.filter(function (book) {
-
-                    return book.id !== id;
-
-                });
-
-
-            displayBooks();
-
-        }
-    );
+});
 
 
     $(document).on(
