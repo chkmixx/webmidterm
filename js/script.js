@@ -481,72 +481,73 @@ $(document).ready(function () {
 
 });
 
+$(document).on("click", ".edit-book", function () {
 
-    $(document).on(
-        "click",
-        ".edit-book",
-        function () {
+    const id = Number($(this).data("id"));
 
-            const id =
-                Number($(this).data("id"));
+    const book = books.find(function (book) {
+        return book.id === id;
+    });
 
-            const book =
-                books.find(function (book) {
+    if (!book) {
+        return;
+    }
 
-                    return book.id === id;
+    const row = $(this).closest("tr");
 
-                });
+    row.find("td:eq(1)").html(`
+        <input
+            type="text"
+            class="form-control edit-title"
+            value="${book.title}">
+    `);
 
+    row.find("td:eq(2)").html(`
+        <input
+            type="text"
+            class="form-control edit-author"
+            value="${book.author}">
+    `);
 
-            if (!book) {
-                return;
-            }
+    row.find(".edit-book").replaceWith(`
+        <button
+            class="btn btn-sm btn-success save-book"
+            data-id="${id}">
+            Save
+        </button>
+    `);
 
+});
+ $(document).on("click", ".save-book", function () {
 
-            const newTitle =
-                prompt(
-                    "Enter new book title:",
-                    book.title
-                );
+    const id = Number($(this).data("id"));
 
+    const book = books.find(function (book) {
+        return book.id === id;
+    });
 
-            if (newTitle === null) {
-                return;
-            }
+    if (!book) {
+        return;
+    }
 
+    const row = $(this).closest("tr");
 
-            const newAuthor =
-                prompt(
-                    "Enter new author:",
-                    book.author
-                );
+    const newTitle =
+        row.find(".edit-title").val().trim();
 
+    const newAuthor =
+        row.find(".edit-author").val().trim();
 
-            if (newAuthor === null) {
-                return;
-            }
+    if (newTitle === "" || newAuthor === "") {
+        return;
+    }
 
+    book.title = newTitle;
+    book.author = newAuthor;
 
-            if (
-                newTitle.trim() === "" ||
-                newAuthor.trim() === ""
-            ) {
+    displayBooks();
 
-                return;
-            }
-
-
-            book.title =
-                newTitle.trim();
-
-            book.author =
-                newAuthor.trim();
-
-
-            displayBooks();
-
-        }
-    );
+});
     function searchBooks() {
 
         const query =
