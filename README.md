@@ -1,4 +1,4 @@
- WEB
+# WEB1 FINAL PROJECT
 
 # Group: IT-2503
 
