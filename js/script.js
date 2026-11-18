@@ -518,7 +518,8 @@ $(document).on("click", ".edit-book", function () {
     `);
 
 });
- $(document).on("click", ".save-book", function () {
+
+$(document).on("click", ".save-book", function () {
 
     const id = Number($(this).data("id"));
 
@@ -532,11 +533,8 @@ $(document).on("click", ".edit-book", function () {
 
     const row = $(this).closest("tr");
 
-    const newTitle =
-        row.find(".edit-title").val().trim();
-
-    const newAuthor =
-        row.find(".edit-author").val().trim();
+    const newTitle = row.find(".edit-title").val().trim();
+    const newAuthor = row.find(".edit-author").val().trim();
 
     if (newTitle === "" || newAuthor === "") {
         return;
